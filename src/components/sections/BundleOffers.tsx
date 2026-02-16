@@ -53,12 +53,6 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all hover:bg-white/[0.08] hover:border-white/20"
                 >
                   <div className="relative h-48 w-full overflow-hidden rounded-t-3xl border-2 border-red-500/50">
-                    {/* DEBUG: Show src */}
-                    <div className="absolute top-0 left-0 z-50 bg-black/50 text-[10px] text-white p-1">
-                        {b.images?.[0] || "No Image"}
-                        {b.images?.[0] && <a href={b.images[0]} target="_blank" className="ml-2 underline text-blue-300">Open</a>}
-                    </div>
-
                     {b.images && b.images[0] && b.images[0].endsWith(".mp4") ? (
                       <LazyVideo
                         src={b.images[0]}
