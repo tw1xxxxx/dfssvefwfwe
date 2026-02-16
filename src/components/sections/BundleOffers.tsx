@@ -113,7 +113,10 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                           Подробнее
                         </Link>
                         <button
-                          onClick={() => open({ serviceName: b.title })}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            open({ serviceName: b.title });
+                          }}
                           className="pointer-events-auto flex w-full items-center justify-center rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
                         >
                           Заказать
