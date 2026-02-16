@@ -40,14 +40,14 @@ export function Hero() {
         </div>
       )}
       <Container>
-        <div className="relative grid min-h-[86vh] items-center gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70">
+        <div className="relative grid min-h-[86vh] items-center gap-12 py-12 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div className="max-w-3xl flex flex-col">
+            <div className="order-1 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] sm:text-xs text-white/70">
               <span className="h-2 w-2 rounded-full bg-[color:var(--color-accent-2)] shadow-[0_0_14px_rgba(45,212,191,0.65)]" />
               Лидер мобильной разработки 2025 года по России
             </div>
 
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
+            <h1 className="order-2 mt-6 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
               <span className="relative inline-block">
                 Ваш успех
               </span>
@@ -56,14 +56,14 @@ export function Hero() {
                 — наша работа
               </span>
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
+            <p className="order-3 mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
               <span className="font-semibold text-white/85">
                 Продающие сайты, Web-платформы, CRM/CMS системы и мобильные
                 приложения.
               </span>
             </p>
 
-            <div className="mt-10 flex flex-col-reverse items-center gap-4 sm:items-center sm:flex-row sm:gap-3">
+            <div className="order-5 sm:order-4 mt-10 flex flex-col-reverse items-center gap-4 sm:items-center sm:flex-row sm:gap-3">
               <button
                 type="button"
                 onClick={() => open()}
@@ -76,7 +76,7 @@ export function Hero() {
               </Button>
             </div>
 
-            <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
+            <div className="order-4 sm:order-5 mt-10 sm:mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
               {stats.map((x, i) => {
                 const orderClass = i === 0 ? "order-1 sm:order-1" :
                                    i === 1 ? "order-3 col-span-2 sm:order-2 sm:col-span-1" :
@@ -91,14 +91,14 @@ export function Hero() {
                       orderClass
                     ].join(" ")}
                   >
-                    <div className={`whitespace-nowrap text-2xl font-semibold tracking-tight sm:text-3xl lg:text-4xl transition-all duration-500 ${x.isActive ? "text-emerald-400 scale-110" : "text-white"}`}>
+                    <div className={`whitespace-nowrap text-xl sm:text-3xl lg:text-4xl font-semibold tracking-tight transition-all duration-500 ${x.isActive ? "text-emerald-400 scale-110" : "text-white"}`}>
                       <span className="relative inline-block">
                         {x.value}
                         {x.isActive ? (
-                          <span className="pointer-events-none absolute -right-6 -top-2 h-6 w-6">
+                          <span className="pointer-events-none absolute -right-4 -top-1 h-4 w-4 sm:-right-6 sm:-top-2 sm:h-6 sm:w-6">
                             <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/20" />
                             <span className="absolute inset-0 rounded-full bg-emerald-400/25 blur-md" />
-                            <span className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 ring-1 ring-emerald-200/40 shadow-[0_0_18px_rgba(52,211,153,0.85)]" />
+                            <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 sm:h-2.5 sm:w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 ring-1 ring-emerald-200/40 shadow-[0_0_18px_rgba(52,211,153,0.85)]" />
                           </span>
                         ) : null}
                       </span>
