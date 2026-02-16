@@ -20,7 +20,8 @@ export default function LazyVideo({
   priority = false,
 }: LazyVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isLoaded, setIsLoaded] = useState(priority);
+  // Temporary fix: Default to true to rule out IntersectionObserver issues causing empty src
+  const [isLoaded, setIsLoaded] = useState(true); 
   // Use a ref to track visibility so we can access it in event handlers
   // without needing to recreate listeners or effects
   const isVisibleRef = useRef(priority);
