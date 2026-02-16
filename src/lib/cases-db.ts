@@ -1,6 +1,12 @@
 import fs from 'fs/promises';
 import path from 'path';
 
+// For Vercel, we need to ensure these files are included.
+// However, the best way for static data is to just import it if it's JSON.
+// But since the interface implies potential updates (saveCases), we stick with fs for now.
+// IMPORTANT: On Vercel Serverless, writing to filesystem is ephemeral and won't persist.
+// This code assumes a persistent environment or is just a demo/read-only on Vercel.
+
 const DB_PATH = path.join(process.cwd(), 'src/lib/data/cases.json');
 
 export type CaseStudy = {
@@ -27,10 +33,16 @@ export type CaseStudy = {
 
 export async function getCases(): Promise<CaseStudy[]> {
   try {
+    // In production (Vercel), process.cwd() might not be what we expect for file reading
+    // unless the file is explicitly traced.
+    // Fallback to import if fs fails is tricky in async function.
+    // Ideally, for a static site, we should use `import data from ...`
+    
     const data = await fs.readFile(DB_PATH, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
     console.error('Error reading cases:', error);
+    // Attempt to return empty array instead of crashing
     return [];
   }
 }
