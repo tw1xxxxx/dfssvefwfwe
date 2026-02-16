@@ -119,41 +119,43 @@ export function Process() {
 
       <Container>
         <InView>
-          <div className="mb-16 md:mb-24 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.3em] text-emerald-400">
+          <div className="mb-8 md:mb-24 text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1.5 text-[10px] md:text-[12px] font-bold uppercase tracking-[0.3em] text-emerald-400">
               Workflow
             </div>
-            <h2 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl text-white">
+            <h2 className="mt-3 md:mt-6 text-3xl md:text-4xl font-semibold tracking-tight sm:text-5xl text-white">
               Решение в <span className="text-emerald-400 text-glow">6 шагов</span>
             </h2>
-            <p className="mt-6 text-lg text-white/40 max-w-2xl mx-auto">
+            <p className="mt-3 md:mt-6 text-sm md:text-lg text-white/40 max-w-2xl mx-auto">
               Прозрачный процесс работы от первого обсуждения до запуска готового продукта.
             </p>
           </div>
         </InView>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 grid-cols-2 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {steps.map((step, idx) => (
             <InView key={step.id} delayMs={idx * 100}>
-              <div className="group relative h-full rounded-3xl border border-white/10 bg-white/5 p-8 transition-all hover:border-emerald-500/30 hover:bg-white/[0.07]">
-                <div className="mb-6 flex items-center justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 text-emerald-400 ring-1 ring-white/10 transition-transform group-hover:scale-110 group-hover:bg-emerald-500/10 group-hover:ring-emerald-500/20">
-                    {step.icon}
+              <div className="group relative h-full rounded-2xl md:rounded-3xl border border-white/10 bg-white/5 p-4 md:p-8 transition-all hover:border-emerald-500/30 hover:bg-white/[0.07]">
+                <div className="mb-3 md:mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-0">
+                  <div className="flex h-8 w-8 md:h-12 md:w-12 items-center justify-center rounded-xl md:rounded-2xl bg-white/5 text-emerald-400 ring-1 ring-white/10 transition-transform group-hover:scale-110 group-hover:bg-emerald-500/10 group-hover:ring-emerald-500/20">
+                    <div className="w-5 h-5 md:w-auto md:h-auto flex items-center justify-center">
+                      {step.icon}
+                    </div>
                   </div>
-                  <span className="text-6xl font-bold text-white/5 group-hover:text-emerald-500/10 transition-colors">
+                  <span className="text-2xl md:text-6xl font-bold text-white/5 group-hover:text-emerald-500/10 transition-colors">
                     0{idx + 1}
                   </span>
                 </div>
                 
-                <h3 className="mb-2 text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                <h3 className="mb-1 md:mb-2 text-sm md:text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
                   {step.title}
                 </h3>
                 
-                <p className="text-sm font-bold uppercase tracking-wider text-white/40 mb-4">
+                <p className="text-[10px] md:text-sm font-bold uppercase tracking-wider text-white/40 mb-2 md:mb-4">
                   {step.subtitle}
                 </p>
 
-                <p className="text-base leading-relaxed text-white/60">
+                <p className="hidden md:block text-base leading-relaxed text-white/60">
                   {step.description}
                 </p>
 
@@ -161,9 +163,9 @@ export function Process() {
                   <a
                     href={step.link.href}
                     download
-                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                    className="mt-2 md:mt-6 inline-flex items-center gap-2 text-[10px] md:text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
                   >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-3 w-3 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     {step.link.label}

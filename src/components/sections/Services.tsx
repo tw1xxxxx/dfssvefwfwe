@@ -45,7 +45,7 @@ export function Services() {
   const [openId, setOpenId] = useState<string>("web");
 
   return (
-    <section id="services" className="border-t border-white/10">
+    <section id="services" className="hidden md:block border-t border-white/10">
       <Container>
         <div className="py-16">
           <InView>

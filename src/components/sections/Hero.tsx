@@ -48,7 +48,7 @@ export function Hero() {
         </div>
       )}
       <Container>
-        <div className="relative grid min-h-[86vh] items-center gap-10 py-8 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <div className="relative grid min-h-[86svh] items-center gap-10 py-8 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div className="max-w-3xl flex flex-col">
             <div className="order-1 self-start inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] sm:text-xs text-white/70">
               <span className="h-2 w-2 rounded-full bg-[color:var(--color-accent-2)] shadow-[0_0_14px_rgba(45,212,191,0.65)]" />
