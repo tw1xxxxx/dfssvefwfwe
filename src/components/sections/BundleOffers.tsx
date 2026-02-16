@@ -102,13 +102,21 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                           </div>
                         </div>
                       </div>
-                      
-                      <button
-                        onClick={() => open({ serviceName: b.title })}
-                        className="mt-6 flex w-full items-center justify-center rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
-                      >
-                        Заказать
-                      </button>
+
+                      <div className="mt-6 grid grid-cols-2 gap-3">
+                        <Link
+                          href={`/bundles/${b.id}`}
+                          className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/5"
+                        >
+                          Подробнее
+                        </Link>
+                        <button
+                          onClick={() => open({ serviceName: b.title })}
+                          className="flex w-full items-center justify-center rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+                        >
+                          Заказать
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
