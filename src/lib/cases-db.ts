@@ -27,13 +27,10 @@ export type CaseStudy = {
 };
 
 export async function getCases(): Promise<CaseStudy[]> {
-  try {
-    const data = await fs.readFile(DB_PATH, 'utf-8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading cases, falling back to bundled data:', error);
-    return defaultCases as CaseStudy[];
-  }
+  // In Vercel environment, we should rely on the bundled JSON data
+  // rather than trying to read from the filesystem at runtime,
+  // as the file paths might differ or be inaccessible.
+  return defaultCases as CaseStudy[];
 }
 
 export async function saveCases(cases: CaseStudy[]): Promise<void> {

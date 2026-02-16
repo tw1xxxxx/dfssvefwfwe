@@ -24,13 +24,10 @@ export type Post = {
 };
 
 export async function getPosts(): Promise<Post[]> {
-  try {
-    const data = await fs.readFile(DB_PATH, 'utf-8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading posts, falling back to bundled data:', error);
-    return defaultPosts as Post[];
-  }
+  // In Vercel environment, we should rely on the bundled JSON data
+  // rather than trying to read from the filesystem at runtime,
+  // as the file paths might differ or be inaccessible.
+  return defaultPosts as Post[];
 }
 
 export async function getPublishedPosts(): Promise<Post[]> {

@@ -25,13 +25,10 @@ export type Bundle = {
 };
 
 export async function getBundles(): Promise<Bundle[]> {
-  try {
-    const data = await fs.readFile(DB_PATH, 'utf-8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading bundles, falling back to bundled data:', error);
-    return defaultBundles as Bundle[];
-  }
+  // In Vercel environment, we should rely on the bundled JSON data
+  // rather than trying to read from the filesystem at runtime,
+  // as the file paths might differ or be inaccessible.
+  return defaultBundles as Bundle[];
 }
 
 export async function saveBundles(bundles: Bundle[]): Promise<void> {

@@ -13,13 +13,10 @@ export type SiteConfig = {
 };
 
 export async function getSiteConfig(): Promise<SiteConfig> {
-  try {
-    const data = await fs.readFile(CONFIG_PATH, 'utf-8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading site config, falling back to bundled data:', error);
-    return defaultConfig as SiteConfig;
-  }
+  // In Vercel environment, we should rely on the bundled JSON data
+  // rather than trying to read from the filesystem at runtime,
+  // as the file paths might differ or be inaccessible.
+  return defaultConfig as SiteConfig;
 }
 
 export async function saveSiteConfig(config: SiteConfig): Promise<void> {
