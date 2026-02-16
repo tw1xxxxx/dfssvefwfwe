@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useRef } from "react";
 
 export function Typewriter({
@@ -16,7 +16,7 @@ export function Typewriter({
 }) {
   const ref = useRef(null);
   
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -27,7 +27,7 @@ export function Typewriter({
     },
   };
 
-  const child = {
+  const child: Variants = {
     hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
