@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import defaultCases from './data/cases.json';
 
 const DB_PATH = path.join(process.cwd(), 'src/lib/data/cases.json');
 
@@ -30,8 +31,8 @@ export async function getCases(): Promise<CaseStudy[]> {
     const data = await fs.readFile(DB_PATH, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
-    console.error('Error reading cases:', error);
-    return [];
+    console.error('Error reading cases, falling back to bundled data:', error);
+    return defaultCases as CaseStudy[];
   }
 }
 

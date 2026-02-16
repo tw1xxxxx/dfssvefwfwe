@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import defaultPosts from './data/posts.json';
 
 const DB_PATH = path.join(process.cwd(), 'src/lib/data/posts.json');
 
@@ -27,8 +28,8 @@ export async function getPosts(): Promise<Post[]> {
     const data = await fs.readFile(DB_PATH, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
-    console.error('Error reading posts:', error);
-    return [];
+    console.error('Error reading posts, falling back to bundled data:', error);
+    return defaultPosts as Post[];
   }
 }
 
