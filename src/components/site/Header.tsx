@@ -44,7 +44,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b transition-colors",
+        "fixed top-0 left-0 right-0 z-50 border-b transition-colors",
         "border-white/10 bg-[#05070b]/80 backdrop-blur"
       )}
     >
