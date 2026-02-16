@@ -49,10 +49,11 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
             {visibleBundles.map((b, idx) => (
               <InView key={b.id} delayMs={idx * 80} className="h-full">
-                <div
-                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all hover:bg-white/[0.08] hover:border-white/20"
+                <Link
+                  href={`/bundles/${b.id}`}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all hover:bg-white/[0.08] hover:border-white/20 select-none cursor-pointer"
                 >
-                  <div className="relative h-48 w-full overflow-hidden rounded-t-3xl border-b border-white/10">
+                  <div className="relative h-48 w-full overflow-hidden rounded-t-3xl border-b border-white/10 pointer-events-none">
                     {b.images && b.images[0] && b.images[0].endsWith(".mp4") ? (
                       <LazyVideo
                         src={b.images[0]}
