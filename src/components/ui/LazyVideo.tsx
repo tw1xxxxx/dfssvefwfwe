@@ -33,13 +33,15 @@ export default function LazyVideo({
     video.muted = true;
     
     // Attempt to play immediately
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch((err) => {
-        console.error("Auto-play failed:", err);
-        setDebugInfo(prev => prev + `\nAutoplay err: ${err.message}`);
-      });
-    }
+    const startPlay = async () => {
+        try {
+            await video.play();
+        } catch (err) {
+            console.error("Auto-play failed:", err);
+            // setDebugInfo(prev => prev + `\nAutoplay err: ${err.message}`);
+        }
+    };
+    startPlay();
   }, [src]);
 
   const handleTimeUpdate = () => {
@@ -70,13 +72,19 @@ export default function LazyVideo({
     <div className="relative h-full w-full bg-gray-900">
         <video
         ref={videoRef}
-        className={`${className} pointer-events-none`}
+        className={`${className}`}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
         controls={false}
+        onClick={(e) => {
+            const video = e.currentTarget;
+            if (video.paused) {
+                video.play().catch(() => {});
+            }
+        }}
         onTimeUpdate={handleTimeUpdate}
         onError={handleError}
         onLoadedMetadata={handleLoadedMetadata}
