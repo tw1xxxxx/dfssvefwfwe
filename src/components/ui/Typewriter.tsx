@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 
 export function Typewriter({
@@ -15,8 +15,7 @@ export function Typewriter({
   speed?: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
+  
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -47,7 +46,8 @@ export function Typewriter({
       className={`inline-block ${className}`}
       variants={container}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true }}
     >
       {text.split("").map((char, index) => (
         <motion.span key={index} variants={child} className="inline-block whitespace-pre">

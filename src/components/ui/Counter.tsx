@@ -18,7 +18,7 @@ export function Counter({
     damping: 60,
     stiffness: 100,
   });
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
@@ -34,5 +34,9 @@ export function Counter({
     });
   }, [springValue]);
 
-  return <span ref={ref} className={className} />;
+  return (
+    <span ref={ref} className={className}>
+      {direction === "down" ? value : 0}
+    </span>
+  );
 }
