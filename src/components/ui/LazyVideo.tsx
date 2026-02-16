@@ -30,18 +30,46 @@ export default function LazyVideo({
     // Force muted to allow autoplay on mobile
     video.muted = true;
     video.defaultMuted = true;
-    video.setAttribute("playsinline", "");
+    video.setAttribute("playsinline", "true");
+    video.setAttribute("webkit-playsinline", "true"); // For older iOS
     video.setAttribute("muted", "");
     
     // Attempt to play immediately
     const playPromise = video.play();
     if (playPromise !== undefined) {
-      playPromise.catch((err) => {
-        // Autoplay might be blocked, but we don't need to log it to user
-        // console.error("Auto-play failed:", err);
+      playPromise.catch(() => {
+        // Autoplay failed, we can try again on interaction
       });
     }
   }, [src]);
+
+  // Retry playing if paused (e.g. after low power mode suspension)
+  useEffect(() => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      const handleVisibilityChange = () => {
+          if (document.visibilityState === 'visible' && video.paused) {
+              video.play().catch(() => {});
+          }
+      };
+
+      const handleTouch = () => {
+          if (video.paused) {
+              video.play().catch(() => {});
+          }
+      };
+
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+      document.addEventListener("touchstart", handleTouch, { passive: true });
+      document.addEventListener("click", handleTouch, { passive: true });
+
+      return () => {
+          document.removeEventListener("visibilitychange", handleVisibilityChange);
+          document.removeEventListener("touchstart", handleTouch);
+          document.removeEventListener("click", handleTouch);
+      };
+  }, []);
 
   const handleTimeUpdate = () => {
     const video = videoRef.current;
