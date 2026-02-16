@@ -57,40 +57,26 @@ export default function LazyVideo({
       const err = video?.error;
       const errorMsg = `Error: ${err?.message || "Unknown error"} (Code: ${err?.code})`;
       console.error("Video Error:", errorMsg, "Src:", src);
-      setError(errorMsg);
+      // setError(errorMsg); // Silently fail in production or log only
   };
 
   const handleLoadedMetadata = () => {
       const video = videoRef.current;
-      setDebugInfo(prev => prev + `\nLoaded: ${video?.videoWidth}x${video?.videoHeight}, Dur: ${video?.duration}`);
+      // setDebugInfo(prev => prev + `\nLoaded: ${video?.videoWidth}x${video?.videoHeight}, Dur: ${video?.duration}`);
       if (onLoad) onLoad();
   };
 
   return (
     <div className="relative h-full w-full bg-gray-900">
-        {error && (
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-gray-900 text-white p-4 text-center">
-                <div className="text-xs">
-                    <p className="text-red-400 mb-2">Video Load Error</p>
-                    <p className="opacity-50">{error}</p>
-                    <p className="mt-2 text-[10px] break-all">{src}</p>
-                </div>
-            </div>
-        )}
-        {!error && (
-            <div className="absolute bottom-0 left-0 z-50 bg-black/50 text-white text-[10px] p-1 w-full break-all pointer-events-none opacity-0 hover:opacity-100 transition-opacity">
-                {debugInfo}
-            </div>
-        )}
         <video
         ref={videoRef}
-        className={className}
+        className={`${className} pointer-events-none`}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
-        controls={true} 
+        controls={false}
         onTimeUpdate={handleTimeUpdate}
         onError={handleError}
         onLoadedMetadata={handleLoadedMetadata}

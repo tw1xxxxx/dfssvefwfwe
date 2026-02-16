@@ -52,7 +52,7 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                 <div
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all hover:bg-white/[0.08] hover:border-white/20"
                 >
-                  <div className="relative h-48 w-full overflow-hidden rounded-t-3xl border-2 border-red-500/50">
+                  <div className="relative h-48 w-full overflow-hidden rounded-t-3xl border-b border-white/10">
                     {b.images && b.images[0] && b.images[0].endsWith(".mp4") ? (
                       <LazyVideo
                         src={b.images[0]}
