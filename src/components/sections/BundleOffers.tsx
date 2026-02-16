@@ -105,12 +105,15 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                         </div>
                       </div>
 
-                      <div className="mt-6">
+                      <div className="mt-6 grid grid-cols-2 gap-3">
+                        <Link
+                          href={`/bundles/${b.id}`}
+                          className="pointer-events-auto flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/5"
+                        >
+                          Подробнее
+                        </Link>
                         <button
-                          onClick={(e) => {
-                            e.stopPropagation(); // Prevent link click
-                            open({ serviceName: b.title });
-                          }}
+                          onClick={() => open({ serviceName: b.title })}
                           className="pointer-events-auto flex w-full items-center justify-center rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
                         >
                           Заказать

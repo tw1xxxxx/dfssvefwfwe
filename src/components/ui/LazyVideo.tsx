@@ -19,8 +19,6 @@ export default function LazyVideo({
   onLoad,
 }: LazyVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [debugInfo, setDebugInfo] = useState<string>("");
 
   useEffect(() => {
     const video = videoRef.current;
