@@ -29,6 +29,9 @@ export default function LazyVideo({
     const video = videoRef.current;
     if (!video) return;
 
+    // Ensure muted is set (critical for autoplay)
+    video.muted = true;
+
     // If priority is true, try to play immediately
     if (priority) {
       const playPromise = video.play();
@@ -53,9 +56,12 @@ export default function LazyVideo({
             }
 
             // Try to play immediately (works if already loaded)
-            video.play().catch(() => {
-              // Expected error if src is not yet loaded
-            });
+            // Use setTimeout to allow state updates to propagate if needed
+            setTimeout(() => {
+                 if (video.paused && isVisibleRef.current) {
+                     video.play().catch(() => {});
+                 }
+            }, 50);
           } else {
             // Pause when out of view
             video.pause();
