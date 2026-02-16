@@ -52,7 +52,13 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                 <div
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all hover:bg-white/[0.08] hover:border-white/20"
                 >
-                  <div className="relative h-48 w-full overflow-hidden rounded-t-3xl">
+                  <div className="relative h-48 w-full overflow-hidden rounded-t-3xl border-2 border-red-500/50">
+                    {/* DEBUG: Show src */}
+                    <div className="absolute top-0 left-0 z-50 bg-black/50 text-[10px] text-white p-1">
+                        {b.images?.[0] || "No Image"}
+                        {b.images?.[0] && <a href={b.images[0]} target="_blank" className="ml-2 underline text-blue-300">Open</a>}
+                    </div>
+
                     {b.images && b.images[0] && b.images[0].endsWith(".mp4") ? (
                       <LazyVideo
                         src={b.images[0]}
@@ -102,56 +108,19 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                           </div>
                         </div>
                       </div>
-
-                      <div className="mt-6 flex gap-3">
-                        <span
-                          className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 text-sm font-medium text-white transition-colors group-hover:bg-white/10 group-hover:border-white/20"
-                        >
-                          Подробнее
-                        </span>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault(); // Prevent navigation
-                            const sId =
-                              b.id === "landing" || b.id === "corporate"
-                                ? "web"
-                                : b.id === "app"
-                                ? "mobile"
-                                : b.id === "crm" || b.id === "internal-tools"
-                                ? "systems"
-                                : "web";
-                            open({
-                              serviceId: sId,
-                              serviceName: `Комплексное предложение — ${b.title}`,
-                            });
-                          }}
-                          className="relative z-10 inline-flex h-11 flex-1 items-center justify-center rounded-full bg-[color:var(--color-accent-2)] px-4 text-sm font-semibold text-black transition-colors hover:bg-[#2dd4bf] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-ring)]"
-                        >
-                          Заказать
-                        </button>
-                      </div>
+                      
+                      <button
+                        onClick={() => open(b.title)}
+                        className="mt-6 flex w-full items-center justify-center rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+                      >
+                        Заказать
+                      </button>
                     </div>
                   </div>
-                  <Link href={`/bundles/${b.id}`} className="absolute inset-0 z-0">
-                    <span className="sr-only">Подробнее о {b.title}</span>
-                  </Link>
                 </div>
               </InView>
             ))}
           </div>
-
-          {!showAll && bundles.length > visibleBundles.length ? (
-            <div className="mt-10 flex justify-center">
-              <button
-                type="button"
-                onClick={() => setShowAll(true)}
-                className="inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-ring)]"
-              >
-                Показать больше
-              </button>
-            </div>
-          ) : null}
         </div>
       </Container>
     </section>
