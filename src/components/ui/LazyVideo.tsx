@@ -27,8 +27,11 @@ export default function LazyVideo({
     // Reload video when src changes
     video.load();
 
-    // Force muted to allow autoplay
+    // Force muted to allow autoplay on mobile
     video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("muted", "");
     
     // Attempt to play immediately
     const playPromise = video.play();
@@ -58,6 +61,14 @@ export default function LazyVideo({
       if (onLoad) onLoad();
   };
 
+  const handleCanPlay = () => {
+    const video = videoRef.current;
+    if (video && video.paused) {
+        video.muted = true;
+        video.play().catch(() => {});
+    }
+  };
+
   return (
     <div className="relative h-full w-full bg-gray-900">
         <video
@@ -71,6 +82,7 @@ export default function LazyVideo({
         onTimeUpdate={handleTimeUpdate}
         onError={handleError}
         onLoadedMetadata={handleLoadedMetadata}
+        onCanPlay={handleCanPlay}
         >
             <source src={src} type="video/mp4" />
         </video>
