@@ -1,8 +1,4 @@
-import fs from 'fs/promises';
-import path from 'path';
 import defaultConfig from './data/site-config.json';
-
-const CONFIG_PATH = path.join(process.cwd(), 'src/lib/data/site-config.json');
 
 export type SiteConfig = {
   title: string;
@@ -20,5 +16,7 @@ export async function getSiteConfig(): Promise<SiteConfig> {
 }
 
 export async function saveSiteConfig(config: SiteConfig): Promise<void> {
-  await fs.writeFile(CONFIG_PATH, JSON.stringify(config, null, 2), 'utf-8');
+  // In a real app with a backend, we would save to a database.
+  // For this static site/demo, we can't persist changes to the filesystem in Vercel.
+  console.warn('saveSiteConfig called but filesystem is read-only in this environment.');
 }

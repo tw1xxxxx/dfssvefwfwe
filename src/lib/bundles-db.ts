@@ -1,8 +1,4 @@
-import fs from 'fs/promises';
-import path from 'path';
 import defaultBundles from './data/bundles.json';
-
-const DB_PATH = path.join(process.cwd(), 'src/lib/data/bundles.json');
 
 export type Bundle = {
   id: string;
@@ -32,7 +28,9 @@ export async function getBundles(): Promise<Bundle[]> {
 }
 
 export async function saveBundles(bundles: Bundle[]): Promise<void> {
-  await fs.writeFile(DB_PATH, JSON.stringify(bundles, null, 2), 'utf-8');
+  // In a real app with a backend, we would save to a database.
+  // For this static site/demo, we can't persist changes to the filesystem in Vercel.
+  console.warn('saveBundles called but filesystem is read-only in this environment.');
 }
 
 export async function getBundleById(id: string): Promise<Bundle | undefined> {

@@ -1,8 +1,4 @@
-import fs from 'fs/promises';
-import path from 'path';
 import defaultPosts from './data/posts.json';
-
-const DB_PATH = path.join(process.cwd(), 'src/lib/data/posts.json');
 
 export type PostContent = {
   type: "p" | "h2" | "li";
@@ -36,7 +32,9 @@ export async function getPublishedPosts(): Promise<Post[]> {
 }
 
 export async function savePosts(posts: Post[]): Promise<void> {
-  await fs.writeFile(DB_PATH, JSON.stringify(posts, null, 2), 'utf-8');
+  // In a real app with a backend, we would save to a database.
+  // For this static site/demo, we can't persist changes to the filesystem in Vercel.
+  console.warn('savePosts called but filesystem is read-only in this environment.');
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {

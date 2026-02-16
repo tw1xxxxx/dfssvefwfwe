@@ -1,8 +1,4 @@
-import fs from 'fs/promises';
-import path from 'path';
 import defaultCases from './data/cases.json';
-
-const DB_PATH = path.join(process.cwd(), 'src/lib/data/cases.json');
 
 export type CaseStudy = {
   slug: string;
@@ -34,7 +30,9 @@ export async function getCases(): Promise<CaseStudy[]> {
 }
 
 export async function saveCases(cases: CaseStudy[]): Promise<void> {
-  await fs.writeFile(DB_PATH, JSON.stringify(cases, null, 2), 'utf-8');
+  // In a real app with a backend, we would save to a database.
+  // For this static site/demo, we can't persist changes to the filesystem in Vercel.
+  console.warn('saveCases called but filesystem is read-only in this environment.');
 }
 
 export async function getCaseBySlug(slug: string): Promise<CaseStudy | undefined> {
