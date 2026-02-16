@@ -36,8 +36,8 @@ export default function LazyVideo({
     const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise.catch((err) => {
-        console.error("Auto-play failed:", err);
-        setDebugInfo(prev => prev + `\nAutoplay err: ${err.message}`);
+        // Autoplay might be blocked, but we don't need to log it to user
+        // console.error("Auto-play failed:", err);
       });
     }
   }, [src]);
@@ -53,16 +53,10 @@ export default function LazyVideo({
   };
 
   const handleError = (e: any) => {
-      const video = videoRef.current;
-      const err = video?.error;
-      const errorMsg = `Error: ${err?.message || "Unknown error"} (Code: ${err?.code})`;
-      console.error("Video Error:", errorMsg, "Src:", src);
-      setError(errorMsg);
+      // Silent error handling for now
   };
 
   const handleLoadedMetadata = () => {
-      const video = videoRef.current;
-      setDebugInfo(prev => prev + `\nLoaded: ${video?.videoWidth}x${video?.videoHeight}, Dur: ${video?.duration}`);
       if (onLoad) onLoad();
   };
 
