@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import defaultBundles from './data/bundles.json';
 
 const DB_PATH = path.join(process.cwd(), 'src/lib/data/bundles.json');
 
@@ -28,8 +29,8 @@ export async function getBundles(): Promise<Bundle[]> {
     const data = await fs.readFile(DB_PATH, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
-    console.error('Error reading bundles:', error);
-    return [];
+    console.error('Error reading bundles, falling back to bundled data:', error);
+    return defaultBundles as Bundle[];
   }
 }
 
