@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
@@ -9,6 +9,13 @@ import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { MobileFloatingButton } from "@/components/ui/MobileFloatingButton";
 import { Suspense } from "react";
 import { getSiteConfig } from "@/lib/site-config";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getSiteConfig();
