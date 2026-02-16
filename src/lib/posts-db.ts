@@ -1,4 +1,7 @@
-import defaultPosts from './data/posts.json';
+import fs from 'fs/promises';
+import path from 'path';
+
+const DB_PATH = path.join(process.cwd(), 'src/lib/data/posts.json');
 
 export type PostContent = {
   type: "p" | "h2" | "li";
@@ -20,10 +23,13 @@ export type Post = {
 };
 
 export async function getPosts(): Promise<Post[]> {
-  // In Vercel environment, we should rely on the bundled JSON data
-  // rather than trying to read from the filesystem at runtime,
-  // as the file paths might differ or be inaccessible.
-  return defaultPosts as Post[];
+  try {
+    const data = await fs.readFile(DB_PATH, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error reading posts:', error);
+    return [];
+  }
 }
 
 export async function getPublishedPosts(): Promise<Post[]> {
@@ -32,9 +38,7 @@ export async function getPublishedPosts(): Promise<Post[]> {
 }
 
 export async function savePosts(posts: Post[]): Promise<void> {
-  // In a real app with a backend, we would save to a database.
-  // For this static site/demo, we can't persist changes to the filesystem in Vercel.
-  console.warn('savePosts called but filesystem is read-only in this environment.');
+  await fs.writeFile(DB_PATH, JSON.stringify(posts, null, 2), 'utf-8');
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {

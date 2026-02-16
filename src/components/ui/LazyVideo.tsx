@@ -21,25 +21,50 @@ export default function LazyVideo({
 }: LazyVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(priority);
+  // Use a ref to track visibility so we can access it in event handlers
+  // without needing to recreate listeners or effects
+  const isVisibleRef = useRef(priority);
 
   useEffect(() => {
-    if (priority) {
-      setIsLoaded(true);
-      return;
-    }
-
     const video = videoRef.current;
     if (!video) return;
 
+    // If priority is true, try to play immediately
+    if (priority) {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Auto-play was prevented or video not ready
+        });
+      }
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsLoaded(true);
-          observer.disconnect();
-        }
+        entries.forEach((entry) => {
+          // Update visibility ref
+          isVisibleRef.current = entry.isIntersecting;
+
+          if (entry.isIntersecting) {
+            // Load the source if not already loaded
+            // We can call this repeatedly; React bails out if value hasn't changed
+            if (!isLoaded) {
+                setIsLoaded(true);
+            }
+
+            // Try to play immediately (works if already loaded)
+            video.play().catch(() => {
+              // Expected error if src is not yet loaded
+            });
+          } else {
+            // Pause when out of view
+            video.pause();
+          }
+        });
       },
       {
-        rootMargin: "200px", // Load when within 200px of viewport
+        threshold: 0.1, // Reduced threshold to ensure it triggers earlier
+        rootMargin: "200px", // Preload/Start before it enters viewport
       }
     );
 
@@ -48,23 +73,17 @@ export default function LazyVideo({
     return () => {
       observer.disconnect();
     };
-  }, [priority]);
+  }, [priority]); // Empty dependency array ensures stable observer
 
-  // Handle play logic when loaded
+  // Effect to handle initial play after source is loaded
   useEffect(() => {
-    if (isLoaded && videoRef.current) {
-      const video = videoRef.current;
-      // We need to wait a tick or ensure element is ready
-      const attemptPlay = async () => {
-        try {
-          if (video.paused) {
-            await video.play();
-          }
-        } catch (error) {
+    if (isLoaded && isVisibleRef.current && videoRef.current) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
           // Auto-play was prevented or video not ready
-        }
-      };
-      attemptPlay();
+        });
+      }
     }
   }, [isLoaded]);
 
@@ -79,7 +98,11 @@ export default function LazyVideo({
     }
   };
 
+  // Vital: Play when data is loaded IF the video is currently visible
   const handleLoadedData = () => {
+    if (isVisibleRef.current && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
     if (onLoad) onLoad();
   };
 
@@ -93,6 +116,7 @@ export default function LazyVideo({
       src={isLoaded ? src : undefined}
       poster={poster}
       className={className}
+      autoPlay
       muted
       loop
       playsInline

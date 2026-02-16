@@ -5,8 +5,6 @@ import { Container } from "@/components/ui/Container";
 import { useLeadModal } from "@/components/site/LeadModalProvider";
 import { NewYearPromo } from "@/components/sections/NewYearPromo";
 import { InteractiveBackground } from "@/components/ui/InteractiveBackground";
-import { Counter } from "@/components/ui/Counter";
-import { Typewriter } from "@/components/ui/Typewriter";
 import { useMemo, useState, useEffect } from "react";
 
 export function Hero() {
@@ -25,18 +23,18 @@ export function Hero() {
   }, []);
 
   const stats = useMemo(() => [
-    { value: <><Counter value={720} />+</>, label: "успешных проектов" },
+    { value: "720+", label: "успешных проектов" },
     { 
       value: (
         <>
-          <span className="sm:hidden">~<Counter value={1792} /> ₽ в минуту</span>
-          <span className="hidden sm:inline">~<Counter value={1792} /> ₽/мин</span>
+          <span className="sm:hidden">~1792 ₽ в минуту</span>
+          <span className="hidden sm:inline">~1792 ₽/мин</span>
         </>
       ), 
       label: "приносят наши проекты заказчикам" 
     },
     { 
-      value: <Counter value={6} />, 
+      value: "6", 
       label: "проектов в работе", 
       isActive: true,
     },
@@ -59,20 +57,17 @@ export function Hero() {
 
             <h1 className="order-2 mt-4 sm:mt-6 text-3xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
               <span className="relative inline-block">
-                <Typewriter text="Ваш успех" delay={0.1} />
+                Ваш успех
               </span>
               <br />
               <span className="relative inline-block mt-1 sm:mt-2">
-                <Typewriter text="— наша работа" delay={0.8} />
+                — наша работа
               </span>
             </h1>
             <p className="order-3 mt-4 sm:mt-6 max-w-2xl text-sm leading-6 text-white/70 sm:text-lg sm:leading-7">
               <span className="font-semibold text-white/85">
-                <Typewriter 
-                  text="Продающие сайты, Web-платформы, CRM/CMS системы и мобильные приложения." 
-                  delay={1.5} 
-                  speed={0.03} 
-                />
+                Продающие сайты, Web-платформы, CRM/CMS системы и мобильные
+                приложения.
               </span>
             </p>
 

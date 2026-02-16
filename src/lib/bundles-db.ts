@@ -1,4 +1,7 @@
-import defaultBundles from './data/bundles.json';
+import fs from 'fs/promises';
+import path from 'path';
+
+const DB_PATH = path.join(process.cwd(), 'src/lib/data/bundles.json');
 
 export type Bundle = {
   id: string;
@@ -21,16 +24,17 @@ export type Bundle = {
 };
 
 export async function getBundles(): Promise<Bundle[]> {
-  // In Vercel environment, we should rely on the bundled JSON data
-  // rather than trying to read from the filesystem at runtime,
-  // as the file paths might differ or be inaccessible.
-  return defaultBundles as Bundle[];
+  try {
+    const data = await fs.readFile(DB_PATH, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error reading bundles:', error);
+    return [];
+  }
 }
 
 export async function saveBundles(bundles: Bundle[]): Promise<void> {
-  // In a real app with a backend, we would save to a database.
-  // For this static site/demo, we can't persist changes to the filesystem in Vercel.
-  console.warn('saveBundles called but filesystem is read-only in this environment.');
+  await fs.writeFile(DB_PATH, JSON.stringify(bundles, null, 2), 'utf-8');
 }
 
 export async function getBundleById(id: string): Promise<Bundle | undefined> {
