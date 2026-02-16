@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import defaultConfig from './data/site-config.json';
 
 const CONFIG_PATH = path.join(process.cwd(), 'src/lib/data/site-config.json');
 
@@ -16,13 +17,8 @@ export async function getSiteConfig(): Promise<SiteConfig> {
     const data = await fs.readFile(CONFIG_PATH, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
-    console.error('Error reading site config:', error);
-    // Return default fallback if file is missing or corrupt
-    return {
-      title: "Альфа — Веб и продуктовая разработка",
-      description: "Разработка сайтов, веб‑приложений, мобильных решений и корпоративных систем.",
-      keywords: [],
-    };
+    console.error('Error reading site config, falling back to bundled data:', error);
+    return defaultConfig as SiteConfig;
   }
 }
 
