@@ -20,14 +20,14 @@ export function ImageCarousel({
 
   if (!images || images.length === 0) {
     return (
-      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-white/5 ring-1 ring-white/10">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2.5rem] bg-white/5 ring-1 ring-white/10 isolate transform-gpu">
         <MediaFallback />
       </div>
     );
   }
 
   return (
-    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-white/5 ring-1 ring-white/10">
+    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2.5rem] bg-white/5 ring-1 ring-white/10 isolate transform-gpu">
       <div
         className="flex h-full transition-transform duration-500 ease-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
