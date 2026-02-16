@@ -49,11 +49,12 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
             {visibleBundles.map((b, idx) => (
               <InView key={b.id} delayMs={idx * 80} className="h-full">
-                <Link
-                  href={`/bundles/${b.id}`}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all hover:bg-white/[0.08] hover:border-white/20 select-none cursor-pointer"
+                <div
+                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all hover:bg-white/[0.08] hover:border-white/20 select-none"
                 >
-                  <div className="relative h-48 w-full overflow-hidden rounded-t-3xl border-b border-white/10 pointer-events-none">
+                  <Link href={`/bundles/${b.id}`} className="absolute inset-0 z-0" aria-label={`Подробнее о ${b.title}`} />
+                  
+                  <div className="relative z-0 h-48 w-full overflow-hidden rounded-t-3xl border-b border-white/10 pointer-events-none">
                     {b.images && b.images[0] && b.images[0].endsWith(".mp4") ? (
                       <LazyVideo
                         src={b.images[0]}
@@ -74,7 +75,7 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                     )}
                   </div>
 
-                  <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-7 pointer-events-none">
                     <div className="text-lg font-semibold tracking-tight">
                       {b.title}
                     </div>
@@ -104,16 +105,13 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                         </div>
                       </div>
 
-                      <div className="mt-6 grid grid-cols-2 gap-3">
-                        <Link
-                          href={`/bundles/${b.id}`}
-                          className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/5"
-                        >
-                          Подробнее
-                        </Link>
+                      <div className="mt-6">
                         <button
-                          onClick={() => open({ serviceName: b.title })}
-                          className="flex w-full items-center justify-center rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent link click
+                            open({ serviceName: b.title });
+                          }}
+                          className="pointer-events-auto flex w-full items-center justify-center rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
                         >
                           Заказать
                         </button>
