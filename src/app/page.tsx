@@ -16,7 +16,7 @@ export default async function Home() {
   const bundles = await getBundles();
 
   return (
-    <main>
+    <main className="select-none">
       <Hero />
       <BundleOffers bundles={bundles} />
       <Services />
