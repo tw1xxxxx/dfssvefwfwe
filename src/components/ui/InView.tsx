@@ -38,7 +38,8 @@ export function InView({
       className={[
         className,
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-        "transition-all duration-700 ease-out motion-reduce:transition-none"
+        "transform-gpu will-change-[transform,opacity] backface-hidden",
+        "transition-[transform,opacity] duration-700 ease-out motion-reduce:transition-none"
       ].join(" ")}
       style={isVisible ? { transitionDelay: `${delayMs}ms` } : undefined}
     >

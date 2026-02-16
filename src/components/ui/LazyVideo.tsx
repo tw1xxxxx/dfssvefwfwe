@@ -98,7 +98,10 @@ export default function LazyVideo({
   };
 
   return (
-    <div className="relative h-full w-full bg-gray-900">
+    <div className="relative h-full w-full bg-gray-900 transform-gpu will-change-transform" onClick={() => {
+        const video = videoRef.current;
+        if (video && video.paused) video.play().catch(() => {});
+    }}>
         <video
         ref={videoRef}
         className={className}
