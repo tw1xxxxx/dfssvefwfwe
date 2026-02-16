@@ -1,5 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
+// Import data directly for Vercel compatibility (read-only)
+import bundlesData from './data/bundles.json';
 
 const DB_PATH = path.join(process.cwd(), 'src/lib/data/bundles.json');
 
@@ -25,11 +27,18 @@ export type Bundle = {
 
 export async function getBundles(): Promise<Bundle[]> {
   try {
-    const data = await fs.readFile(DB_PATH, 'utf-8');
-    return JSON.parse(data);
+    // Prefer direct import for static serving (Vercel)
+    // This ensures data is available even if fs access fails
+    return bundlesData as Bundle[];
   } catch (error) {
-    console.error('Error reading bundles:', error);
-    return [];
+    console.error('Error reading bundles from import, falling back to fs:', error);
+    try {
+        const data = await fs.readFile(DB_PATH, 'utf-8');
+        return JSON.parse(data);
+    } catch (fsError) {
+        console.error('Error reading bundles from fs:', fsError);
+        return [];
+    }
   }
 }
 

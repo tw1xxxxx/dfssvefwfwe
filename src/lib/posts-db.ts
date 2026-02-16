@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import postsData from './data/posts.json';
 
 const DB_PATH = path.join(process.cwd(), 'src/lib/data/posts.json');
 
@@ -24,11 +25,17 @@ export type Post = {
 
 export async function getPosts(): Promise<Post[]> {
   try {
-    const data = await fs.readFile(DB_PATH, 'utf-8');
-    return JSON.parse(data);
+    // Direct import for reliability
+    return postsData as Post[];
   } catch (error) {
-    console.error('Error reading posts:', error);
-    return [];
+    console.error('Error reading posts import, fallback to fs:', error);
+    try {
+        const data = await fs.readFile(DB_PATH, 'utf-8');
+        return JSON.parse(data);
+    } catch (fsError) {
+        console.error('Error reading posts fs:', fsError);
+        return [];
+    }
   }
 }
 

@@ -59,32 +59,23 @@ export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
                         {b.images?.[0] && <a href={b.images[0]} target="_blank" className="ml-2 underline text-blue-300">Open</a>}
                     </div>
 
-                    {/* Temporary External Video Test for first bundle */}
-                    {idx === 0 ? (
-                        <LazyVideo
-                           src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-                           trimEnd={b.videoSettings?.trimEnd}
-                           className="h-full w-full object-cover"
-                        />
+                    {b.images && b.images[0] && b.images[0].endsWith(".mp4") ? (
+                      <LazyVideo
+                        src={b.images[0]}
+                        trimEnd={b.videoSettings?.trimEnd}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : b.images && b.images[0] && b.images[0].startsWith("gradient-") ? (
+                      <div className={`h-full w-full ${getGradient(b.images[0])}`} />
+                    ) : b.images && b.images[0] ? (
+                      <Image
+                        src={b.images[0]}
+                        alt={b.title}
+                        fill
+                        className="object-cover"
+                      />
                     ) : (
-                        b.images && b.images[0] && b.images[0].endsWith(".mp4") ? (
-                          <LazyVideo
-                            src={b.images[0]}
-                            trimEnd={b.videoSettings?.trimEnd}
-                            className="h-full w-full object-cover"
-                          />
-                        ) : b.images && b.images[0] && b.images[0].startsWith("gradient-") ? (
-                          <div className={`h-full w-full ${getGradient(b.images[0])}`} />
-                        ) : b.images && b.images[0] ? (
-                          <Image
-                            src={b.images[0]}
-                            alt={b.title}
-                            fill
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className={`h-full w-full ${getGradient(b.id)}`} />
-                        )
+                      <div className={`h-full w-full ${getGradient(b.id)}`} />
                     )}
                   </div>
 

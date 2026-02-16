@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import casesData from './data/cases.json';
 
 // For Vercel, we need to ensure these files are included.
 // However, the best way for static data is to just import it if it's JSON.
@@ -33,17 +34,17 @@ export type CaseStudy = {
 
 export async function getCases(): Promise<CaseStudy[]> {
   try {
-    // In production (Vercel), process.cwd() might not be what we expect for file reading
-    // unless the file is explicitly traced.
-    // Fallback to import if fs fails is tricky in async function.
-    // Ideally, for a static site, we should use `import data from ...`
-    
-    const data = await fs.readFile(DB_PATH, 'utf-8');
-    return JSON.parse(data);
+    // Use direct import for reliability on Vercel
+    return casesData as CaseStudy[];
   } catch (error) {
-    console.error('Error reading cases:', error);
-    // Attempt to return empty array instead of crashing
-    return [];
+    console.error('Error reading cases import, fallback to fs:', error);
+    try {
+        const data = await fs.readFile(DB_PATH, 'utf-8');
+        return JSON.parse(data);
+    } catch (fsError) {
+        console.error('Error reading cases fs:', fsError);
+        return [];
+    }
   }
 }
 
