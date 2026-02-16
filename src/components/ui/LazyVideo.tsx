@@ -106,6 +106,12 @@ export default function LazyVideo({
     if (onLoad) onLoad();
   };
 
+  const handleCanPlay = () => {
+     if (isVisibleRef.current && videoRef.current) {
+        videoRef.current.play().catch(() => {});
+     }
+  };
+
   const handleError = () => {
     if (onLoad) onLoad();
   };
@@ -122,6 +128,7 @@ export default function LazyVideo({
       playsInline
       onTimeUpdate={handleTimeUpdate}
       onLoadedData={handleLoadedData}
+      onCanPlay={handleCanPlay}
       onError={handleError}
       preload={isLoaded ? "auto" : "none"}
     />

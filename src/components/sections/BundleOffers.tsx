@@ -2,17 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { InView } from "@/components/ui/InView";
 import { useLeadModal } from "@/components/site/LeadModalProvider";
+import LazyVideo from "@/components/ui/LazyVideo";
 import type { Bundle } from "@/lib/bundles-db";
-
-const LazyVideo = dynamic(() => import("@/components/ui/LazyVideo"), {
-  ssr: false,
-  loading: () => <div className="h-full w-full bg-white/5 animate-pulse" />,
-});
 
 export function BundleOffers({ bundles }: { bundles: Bundle[] }) {
   const { open } = useLeadModal();
