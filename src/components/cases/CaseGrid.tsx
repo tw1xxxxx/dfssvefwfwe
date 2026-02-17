@@ -59,7 +59,7 @@ export function CaseGrid({
   return (
     <div className="relative">
       <div 
-        className="sticky top-[80px] z-40 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between transition-all duration-300 py-2"
+        className="sticky top-[81px] z-40 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between py-2"
       >
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0">
           {(["all", "web", "mobile", "crm", "automation"] as const).map((f) => (
@@ -70,8 +70,8 @@ export function CaseGrid({
               className={[
                 "whitespace-nowrap rounded-full border px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium transition-all flex-shrink-0 backdrop-blur-md",
                 filter === f
-                  ? "border-emerald-500/50 bg-[#064e3b]/80 text-emerald-400 shadow-lg shadow-emerald-500/10"
-                  : "border-white/10 bg-[#0d111a]/80 text-white/60 hover:border-white/20 hover:bg-[#0d111a] hover:text-white",
+                  ? "border-emerald-500/50 bg-[#064e3b]/90 text-emerald-400 shadow-lg shadow-emerald-500/10"
+                  : "border-white/10 bg-[#0d111a]/90 text-white/60 hover:border-white/20 hover:bg-[#0d111a] hover:text-white",
               ].join(" ")}
             >
               {label(f) === "Все" ? "Все кейсы" : label(f)}

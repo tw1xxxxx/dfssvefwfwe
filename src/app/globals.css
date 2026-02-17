@@ -40,7 +40,6 @@
 html {
   -webkit-text-size-adjust: 100%;
   touch-action: manipulation;
-  overflow-x: hidden;
 }
 
 body {
