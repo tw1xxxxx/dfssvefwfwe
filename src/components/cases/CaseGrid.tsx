@@ -56,43 +56,10 @@ export function CaseGrid({
     return typeof limit === "number" ? list.slice(0, limit) : list;
   }, [filter, industry, items, limit]);
 
-  const [isSticky, setIsSticky] = useState(false);
-  const filterRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!filterRef.current || !containerRef.current) return;
-      
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const filterHeight = filterRef.current.offsetHeight;
-      
-      // Start sticky when container top hits header (approx 80px)
-      // Stop sticky when container bottom is reached
-      const shouldBeSticky = 
-        containerRect.top <= 100 && 
-        containerRect.bottom >= filterHeight + 100;
-        
-      setIsSticky(shouldBeSticky);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div ref={containerRef} className="relative">
-      {/* Spacer to prevent layout shift when filters become fixed */}
-      <div className={`h-[54px] sm:hidden ${isSticky ? 'block' : 'hidden'}`} />
-      
+    <div className="relative">
       <div 
-        ref={filterRef}
-        className={[
-          "flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between z-40 transition-all duration-300",
-          isSticky 
-            ? "fixed top-[80px] left-0 right-0 px-4 py-3 sm:static sm:bg-transparent sm:border-none sm:shadow-none sm:p-0" 
-            : "relative"
-        ].join(" ")}
+        className="sticky top-[80px] z-40 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between transition-all duration-300 py-2"
       >
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0">
           {(["all", "web", "mobile", "crm", "automation"] as const).map((f) => (
@@ -101,10 +68,10 @@ export function CaseGrid({
               type="button"
               onClick={() => setFilter(f)}
               className={[
-                "whitespace-nowrap rounded-full border px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium transition-all flex-shrink-0",
+                "whitespace-nowrap rounded-full border px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium transition-all flex-shrink-0 backdrop-blur-md",
                 filter === f
-                  ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400 shadow-lg shadow-emerald-500/10"
-                  : "border-white/10 bg-white/5 text-white/60 hover:border-white/20 hover:bg-white/10 hover:text-white",
+                  ? "border-emerald-500/50 bg-[#064e3b]/80 text-emerald-400 shadow-lg shadow-emerald-500/10"
+                  : "border-white/10 bg-[#0d111a]/80 text-white/60 hover:border-white/20 hover:bg-[#0d111a] hover:text-white",
               ].join(" ")}
             >
               {label(f) === "Все" ? "Все кейсы" : label(f)}
