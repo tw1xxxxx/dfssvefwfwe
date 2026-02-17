@@ -48,43 +48,43 @@ export function Hero() {
         </div>
       )}
       <Container>
-        <div className="relative grid min-h-[86svh] items-center gap-10 pt-28 pb-8 sm:pt-40 sm:pb-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <div className="relative grid min-h-[86svh] items-center gap-8 pt-32 pb-12 sm:pt-40 sm:pb-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div className="max-w-3xl flex flex-col">
-            <div className="order-1 self-start inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] sm:text-xs text-white/70">
+            <div className="order-1 self-start inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] sm:text-xs text-white/70 backdrop-blur-sm">
               <span className="h-2 w-2 rounded-full bg-[color:var(--color-accent-2)] shadow-[0_0_14px_rgba(45,212,191,0.65)]" />
               Лидер мобильной разработки 2025 года по России
             </div>
 
-            <h1 className="order-2 mt-4 sm:mt-6 text-3xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
+            <h1 className="order-2 mt-6 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl text-white">
               <span className="relative inline-block">
                 Ваш успех
               </span>
               <br />
-              <span className="relative inline-block mt-1 sm:mt-2">
+              <span className="relative inline-block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
                 — наша работа
               </span>
             </h1>
-            <p className="order-3 mt-4 sm:mt-6 max-w-2xl text-sm leading-6 text-white/70 sm:text-lg sm:leading-7">
-              <span className="font-semibold text-white/85">
+            <p className="order-3 mt-5 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg sm:leading-7">
+              <span className="text-white/90">
                 Продающие сайты, Web-платформы, CRM/CMS системы и мобильные
                 приложения.
               </span>
             </p>
 
-            <div className="order-5 sm:order-4 mt-8 sm:mt-10 flex flex-col-reverse items-center gap-4 sm:items-center sm:flex-row sm:gap-3">
+            <div className="order-4 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:mt-10">
               <button
                 type="button"
                 onClick={() => open()}
-                className="inline-flex h-14 w-full sm:w-auto sm:h-12 items-center justify-center rounded-full bg-[color:var(--color-accent-2)] px-4 sm:px-6 text-base sm:text-sm font-semibold text-black transition-colors hover:bg-[#2dd4bf] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-ring)]"
+                className="inline-flex h-14 w-full sm:w-auto sm:h-12 items-center justify-center rounded-full bg-[color:var(--color-accent-2)] px-8 text-base font-bold text-black transition-all hover:bg-[#2dd4bf] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-ring)] shadow-[0_0_20px_rgba(45,212,191,0.2)]"
               >
                 Заказать
               </button>
-              <Button variant="secondary" href="/cases" className="!px-4 sm:!px-6 w-full sm:w-auto h-14 sm:h-12 text-base sm:text-sm">
+              <Button variant="secondary" href="/cases" className="!px-6 w-full sm:w-auto h-14 sm:h-12 text-base font-medium">
                 Смотреть кейсы
               </Button>
             </div>
 
-            <div className="order-4 sm:order-5 mt-8 sm:mt-14 grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-3">
+            <div className="order-5 mt-10 grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-3 sm:mt-14">
               {stats.map((x, i) => {
                 const orderClass = i === 0 ? "order-1 sm:order-1" :
                                    i === 1 ? "order-3 col-span-2 sm:order-2 sm:col-span-1" :
