@@ -21,21 +21,16 @@ export type Post = {
   metaDescription?: string;
   metaKeywords?: string[];
   published?: boolean;
+  views?: number;
 };
 
 export async function getPosts(): Promise<Post[]> {
   try {
-    // Direct import for reliability
-    return postsData as Post[];
+    const data = await fs.readFile(DB_PATH, 'utf-8');
+    return JSON.parse(data);
   } catch (error) {
-    console.error('Error reading posts import, fallback to fs:', error);
-    try {
-        const data = await fs.readFile(DB_PATH, 'utf-8');
-        return JSON.parse(data);
-    } catch (fsError) {
-        console.error('Error reading posts fs:', fsError);
-        return [];
-    }
+    // Fallback to imported data if file doesn't exist or fails
+    return postsData as Post[];
   }
 }
 

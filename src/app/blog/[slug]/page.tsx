@@ -5,6 +5,8 @@ import { Container } from "@/components/ui/Container";
 import { getPostBySlug } from "@/lib/posts-db";
 import { Metadata } from "next";
 
+import { ViewCounter } from "@/components/blog/ViewCounter";
+
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
@@ -36,13 +38,19 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <main className="min-h-screen">
       <Container>
-        <div className="py-14">
-          <Link href="/blog" className="text-sm text-white/65 hover:text-white">
-            ← Все статьи
+        <div className="pt-32 pb-14">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors">
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Все статьи
           </Link>
 
           <div className="mt-8 max-w-3xl rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
-            <div className="text-xs text-white/50">{post.date}</div>
+            <div className="flex items-center justify-between gap-4">
+              <div className="text-xs text-white/50">{post.date}</div>
+              <ViewCounter slug={slug} initialViews={post.views} />
+            </div>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
               {post.title}
             </h1>
