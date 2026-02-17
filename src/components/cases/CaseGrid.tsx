@@ -90,7 +90,7 @@ export function CaseGrid({
         className={[
           "flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between z-40 transition-all duration-300",
           isSticky 
-            ? "fixed top-[80px] left-0 right-0 px-4 py-3 bg-[#05070b]/90 backdrop-blur border-b border-white/10 shadow-xl sm:static sm:bg-transparent sm:border-none sm:shadow-none sm:p-0" 
+            ? "fixed top-[80px] left-0 right-0 px-4 py-3 sm:static sm:bg-transparent sm:border-none sm:shadow-none sm:p-0" 
             : "relative"
         ].join(" ")}
       >
