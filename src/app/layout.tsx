@@ -6,7 +6,6 @@ import { Background } from "@/components/site/Background";
 import { LeadModalProvider } from "@/components/site/LeadModalProvider";
 import { PageLoader } from "@/components/ui/PageLoader";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
-import { MobileFloatingButton } from "@/components/ui/MobileFloatingButton";
 import { Suspense } from "react";
 import { getSiteConfig } from "@/lib/site-config";
 
@@ -54,7 +53,6 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-          <MobileFloatingButton />
         </LeadModalProvider>
       </body>
     </html>

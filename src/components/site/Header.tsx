@@ -104,12 +104,13 @@ export function Header() {
               Заказать
             </button>
             
-            <a
-              href="tel:+79999196261"
-              className="text-base font-semibold text-[#38bdf8] sm:hidden whitespace-nowrap"
+            <button
+              type="button"
+              onClick={() => open()}
+              className="flex h-10 items-center justify-center rounded-full bg-[color:var(--color-accent-2)] px-4 text-sm font-bold text-black transition-all hover:bg-[#2dd4bf] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-ring)] sm:hidden"
             >
-              +7 (999) 919-62-61
-            </a>
+              Заказать
+            </button>
 
             {/* Mobile Burger Button */}
             <button
