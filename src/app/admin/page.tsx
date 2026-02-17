@@ -60,7 +60,15 @@ export default async function AdminPage() {
       </div>
 
       <div className="grid gap-6">
-        <h2 className="text-xl font-semibold text-white/60 uppercase tracking-wider text-sm">Комплексные предложения</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold text-white/60 uppercase tracking-wider text-sm">Комплексные предложения</h2>
+          <Link
+            href="/admin/bundles/create"
+            className="text-sm px-4 py-2 rounded-lg bg-[color:var(--color-accent-2)] text-black font-semibold hover:bg-[#2dd4bf] transition-colors"
+          >
+            + Добавить
+          </Link>
+        </div>
         {bundles.map((bundle) => (
           <Link
             key={bundle.id}

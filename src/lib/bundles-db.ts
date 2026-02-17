@@ -27,23 +27,23 @@ export type Bundle = {
 
 export async function getBundles(): Promise<Bundle[]> {
   try {
-    // Prefer direct import for static serving (Vercel)
-    // This ensures data is available even if fs access fails
-    return bundlesData as Bundle[];
+    const data = await fs.readFile(DB_PATH, 'utf-8');
+    return JSON.parse(data);
   } catch (error) {
-    console.error('Error reading bundles from import, falling back to fs:', error);
-    try {
-        const data = await fs.readFile(DB_PATH, 'utf-8');
-        return JSON.parse(data);
-    } catch (fsError) {
-        console.error('Error reading bundles from fs:', fsError);
-        return [];
-    }
+    console.warn('Error reading bundles from fs, falling back to import:', error);
+    return bundlesData as Bundle[];
   }
 }
 
 export async function saveBundles(bundles: Bundle[]): Promise<void> {
   await fs.writeFile(DB_PATH, JSON.stringify(bundles, null, 2), 'utf-8');
+}
+
+export async function createBundle(bundle: Bundle): Promise<Bundle> {
+  const bundles = await getBundles();
+  bundles.push(bundle);
+  await saveBundles(bundles);
+  return bundle;
 }
 
 export async function getBundleById(id: string): Promise<Bundle | undefined> {

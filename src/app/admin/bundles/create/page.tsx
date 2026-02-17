@@ -1,58 +1,51 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Bundle } from "@/lib/bundles-db";
 import { ArrayField, ImageUpload } from "../components";
 
-export default function EditBundlePage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
+export default function CreateBundlePage() {
   const router = useRouter();
-  const [bundle, setBundle] = useState<Bundle | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [bundle, setBundle] = useState<Partial<Bundle>>({
+    title: "",
+    price: "",
+    duration: "",
+    includes: [],
+    tech: [],
+    visibleTags: [],
+    images: [],
+    detailedFeatures: [],
+    metaKeywords: [],
+  });
   const [saving, setSaving] = useState(false);
-
-  useEffect(() => {
-    fetch(`/api/bundles/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setBundle(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, [id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!bundle) return;
     setSaving(true);
 
     try {
-      const res = await fetch(`/api/bundles/${id}`, {
-        method: "PUT",
+      const res = await fetch("/api/bundles", {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bundle),
       });
       if (res.ok) {
-        alert("Сохранено!");
+        alert("Создано!");
+        router.push("/admin");
         router.refresh();
       } else {
-        alert("Ошибка сохранения");
+        const data = await res.json();
+        alert(data.error || "Ошибка создания");
       }
     } catch (err) {
       console.error(err);
-      alert("Ошибка сохранения");
+      alert("Ошибка создания");
     } finally {
       setSaving(false);
     }
   };
-
-  if (loading) return <div>Загрузка...</div>;
-  if (!bundle) return <div>Не найдено</div>;
 
   return (
     <div className="max-w-4xl mx-auto pb-20">
@@ -63,7 +56,7 @@ export default function EditBundlePage({ params }: { params: Promise<{ id: strin
         >
           ← Назад
         </Link>
-        <h1 className="text-2xl font-bold">Редактирование: {bundle.title}</h1>
+        <h1 className="text-2xl font-bold">Создание комплексного предложения</h1>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
@@ -73,40 +66,43 @@ export default function EditBundlePage({ params }: { params: Promise<{ id: strin
           
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-white/80">Название</label>
+              <label className="block text-sm font-medium text-white/80">Название *</label>
               <input
                 type="text"
-                value={bundle.title}
+                required
+                value={bundle.title || ""}
                 onChange={(e) => setBundle({ ...bundle, title: e.target.value })}
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder-white/20 focus:border-white/30 focus:outline-none"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-white/80">ID (slug)</label>
+              <label className="block text-sm font-medium text-white/80">ID (автоматически)</label>
               <input
                 type="text"
-                value={bundle.id}
                 disabled
+                placeholder="Генерируется автоматически"
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white/40 cursor-not-allowed"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-white/80">Цена</label>
+              <label className="block text-sm font-medium text-white/80">Цена *</label>
               <input
                 type="text"
-                value={bundle.price}
+                required
+                value={bundle.price || ""}
                 onChange={(e) => setBundle({ ...bundle, price: e.target.value })}
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder-white/20 focus:border-white/30 focus:outline-none"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-white/80">Срок</label>
+              <label className="block text-sm font-medium text-white/80">Срок *</label>
               <input
                 type="text"
-                value={bundle.duration}
+                required
+                value={bundle.duration || ""}
                 onChange={(e) => setBundle({ ...bundle, duration: e.target.value })}
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder-white/20 focus:border-white/30 focus:outline-none"
               />
@@ -166,13 +162,13 @@ export default function EditBundlePage({ params }: { params: Promise<{ id: strin
           
           <ArrayField
             label="Что входит (список)"
-            values={bundle.includes}
+            values={bundle.includes || []}
             onChange={(vals) => setBundle({ ...bundle, includes: vals })}
           />
 
           <ArrayField
             label="Технологии"
-            values={bundle.tech}
+            values={bundle.tech || []}
             onChange={(vals) => setBundle({ ...bundle, tech: vals })}
           />
 
@@ -231,7 +227,7 @@ export default function EditBundlePage({ params }: { params: Promise<{ id: strin
             disabled={saving}
             className="px-6 py-2 rounded-lg bg-[color:var(--color-accent-2)] text-black font-semibold hover:bg-[#2dd4bf] transition-colors disabled:opacity-50"
           >
-            {saving ? "Сохранение..." : "Сохранить изменения"}
+            {saving ? "Создание..." : "Создать"}
           </button>
         </div>
       </form>
