@@ -50,7 +50,7 @@ export default async function CasePage({
       <Container>
         <div className="pt-32 pb-14 sm:pt-40 sm:pb-20">
           <Link
-            href="/#cases"
+            href="/cases"
             className="group inline-flex items-center gap-2 text-sm text-white/45 transition-colors hover:text-white"
           >
             <span className="transition-transform group-hover:-translate-x-1">←</span>
