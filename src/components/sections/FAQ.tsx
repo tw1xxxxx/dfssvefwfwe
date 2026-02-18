@@ -39,7 +39,7 @@ export function FAQ() {
   return (
     <section id="faq" className="relative border-t border-white/10 overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-[#38bdf8]/5 blur-[120px]" />
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-[#38bdf8]/5 blur-[120px] hidden sm:block" />
       
       <Container>
         <div className="py-16 sm:py-20">
@@ -64,7 +64,7 @@ export function FAQ() {
             {faqItems.map((item, index) => (
               <InView key={index} delayMs={index * 50}>
                 <div 
-                  className={`group overflow-hidden rounded-xl border transition-all duration-300 ${
+                  className={`group overflow-hidden rounded-xl border transition-colors duration-300 will-change-[border-color,background-color] ${
                     openIndex === index 
                       ? "border-[color:var(--color-accent-2)]/30 bg-white/5" 
                       : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]"
@@ -102,8 +102,8 @@ export function FAQ() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
+                        transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        className="overflow-hidden will-change-[height,opacity]"
                       >
                         <div className="px-5 pb-5 text-sm leading-6 text-white/60 border-t border-white/5 pt-3">
                           {item.answer}

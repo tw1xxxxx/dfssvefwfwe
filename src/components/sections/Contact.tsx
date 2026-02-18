@@ -6,8 +6,8 @@ export function Contact() {
   return (
     <section id="contact" className="relative overflow-hidden border-t border-white/10">
       {/* Decorative background elements */}
-      <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[color:var(--color-accent-2)]/10 blur-[120px]" />
-      <div className="absolute -left-24 -bottom-24 h-96 w-96 rounded-full bg-[#38bdf8]/10 blur-[120px]" />
+      <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[color:var(--color-accent-2)]/10 blur-[120px] hidden sm:block" />
+      <div className="absolute -left-24 -bottom-24 h-96 w-96 rounded-full bg-[#38bdf8]/10 blur-[120px] hidden sm:block" />
 
       <Container>
         <div className="relative py-24">

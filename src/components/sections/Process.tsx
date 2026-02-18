@@ -114,8 +114,8 @@ export function Process() {
   return (
     <section id="process" className="relative border-t border-white/10 bg-[#030712] py-24 sm:py-32">
       {/* Background gradients */}
-      <div className="absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.03] blur-[100px]" />
-      <div className="absolute left-0 bottom-0 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.03] blur-[100px]" />
+      <div className="absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.03] blur-[100px] hidden sm:block" />
+      <div className="absolute left-0 bottom-0 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.03] blur-[100px] hidden sm:block" />
 
       <Container>
         <InView>
