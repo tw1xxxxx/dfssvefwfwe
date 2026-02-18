@@ -31,6 +31,19 @@ export function LeadForm({
   
   // Budget state
   const [budget, setBudget] = useState("");
+  const budgetOptions = useMemo(() => [
+    { label: "Эконом", value: "до 100 000 ₽", min: 0, max: 100000 },
+    { label: "Стартап", value: "100 000 - 300 000 ₽", min: 100000, max: 300000 },
+    { label: "Значительный", value: "300 000 - 1 000 000 ₽", min: 300000, max: 1000000 },
+    { label: "Крупный", value: "от 1 000 000 ₽", min: 1000000, max: 10000000 },
+  ], []);
+
+  const [budgetIndex, setBudgetIndex] = useState(0);
+
+  const handleBudgetChange = (idx: number) => {
+    setBudgetIndex(idx);
+    setBudget(budgetOptions[idx].value);
+  };
 
   // Contact field state for masking
   const [contact, setContact] = useState("");
@@ -191,6 +204,60 @@ export function LeadForm({
         <label htmlFor={`${formId}-budget`} className="text-xs font-semibold uppercase tracking-widest text-white/40 ml-1">
           Бюджет
         </label>
+        
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 mb-2">
+          {budgetOptions.map((opt, idx) => (
+            <button
+              key={opt.label}
+              type="button"
+              onClick={() => handleBudgetChange(idx)}
+              className={cn(
+                "flex flex-col items-center justify-center rounded-xl border p-2 text-center transition-all",
+                budgetIndex === idx
+                  ? "border-[color:var(--color-accent-2)] bg-[color:var(--color-accent-2)]/10 text-[color:var(--color-accent-2)]"
+                  : "border-white/5 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+              )}
+            >
+              <div className="text-[10px] font-bold uppercase tracking-wider opacity-70 mb-0.5">
+                {opt.label}
+              </div>
+              <div className="text-[10px] sm:text-xs font-medium">
+                {idx === 3 ? "> 1 млн ₽" : opt.value.replace(" - ", "-").replace(" ₽", "") + " ₽"}
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <div className="relative h-12 px-2 mb-2">
+          {/* Custom Range Slider */}
+          <input
+            type="range"
+            min={0}
+            max={budgetOptions.length - 1}
+            step={1}
+            value={budgetIndex}
+            onChange={(e) => handleBudgetChange(Number(e.target.value))}
+            className="w-full absolute top-1/2 -translate-y-1/2 z-20 opacity-0 cursor-pointer h-full"
+          />
+          
+          {/* Visual Track */}
+          <div className="absolute top-1/2 left-0 w-full h-1.5 bg-white/10 rounded-full -translate-y-1/2 overflow-hidden pointer-events-none">
+            <div 
+              className="h-full bg-[color:var(--color-accent-2)]"
+              style={{ width: `${(budgetIndex / (budgetOptions.length - 1)) * 100}%` }}
+            />
+          </div>
+          
+          {/* Visual Thumb */}
+          <div 
+            className="absolute top-1/2 h-6 w-6 bg-[color:var(--color-accent-2)] rounded-full shadow-[0_0_15px_rgba(45,212,191,0.5)] border-2 border-[#030712] pointer-events-none z-10"
+            style={{ 
+              left: `${(budgetIndex / (budgetOptions.length - 1)) * 100}%`,
+              transform: `translate(-50%, -50%)`
+            }}
+          />
+        </div>
+
         <input
           id={`${formId}-budget`}
           name="budget"
