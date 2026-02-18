@@ -9,10 +9,20 @@ function label(type: CaseStudy["serviceType"]) {
   return "Автоматизация";
 }
 
-export function CaseCard({ caseStudy }: { caseStudy: CaseStudy }) {
+export function CaseCard({ 
+  caseStudy, 
+  queryParams 
+}: { 
+  caseStudy: CaseStudy; 
+  queryParams?: Record<string, string>; 
+}) {
+  const href = queryParams 
+    ? `/cases/${caseStudy.slug}?${new URLSearchParams(queryParams).toString()}` 
+    : `/cases/${caseStudy.slug}`;
+
   return (
     <Link
-      href={`/cases/${caseStudy.slug}`}
+      href={href}
       className="group relative flex flex-col rounded-3xl border border-white/10 bg-white/5 p-6 transition-all hover:bg-white/[0.08] hover:border-white/20"
     >
       <div className="flex items-start justify-between gap-4">

@@ -217,7 +217,11 @@ export default async function BundlePage({
 
             <div className="grid gap-6 md:grid-cols-2">
               {relatedCases.map((c) => (
-                <CaseCard key={c.slug} caseStudy={c} />
+                <CaseCard 
+                  key={c.slug} 
+                  caseStudy={c} 
+                  queryParams={{ from: "bundle", bundleId: bundle.id }} 
+                />
               ))}
             </div>
           </div>

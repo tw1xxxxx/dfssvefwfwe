@@ -6,14 +6,13 @@ import { CaseOrderButton } from "@/components/cases/CaseOrderButton";
 import { ImageCarousel } from "@/components/ui/ImageCarousel";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { Metadata } from "next";
+import { CaseBackButton } from "@/components/cases/CaseBackButton";
 
 export const revalidate = 60;
 
 export async function generateStaticParams() {
   const cases = await getCases();
-  return cases.map((c) => ({
-    slug: c.slug,
-  }));
+  return cases.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -24,14 +23,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const item = await getCaseBySlug(slug);
 
-  if (!item) {
-    return {};
-  }
+  if (!item) return {};
 
   return {
-    title: item.metaTitle || `${item.title} | Кейс Alpha`,
+    title: item.metaTitle || `${item.title} | Alpha`,
     description: item.metaDescription || item.challenge,
-    keywords: item.metaKeywords || [...item.tags, item.industry, item.client],
+    keywords: item.metaKeywords || [item.industry, item.client, ...item.tags],
+    openGraph: {
+      images: item.imageUrl ? [item.imageUrl] : [],
+    },
   };
 }
 
@@ -49,13 +49,7 @@ export default async function CasePage({
     <main className="min-h-screen">
       <Container>
         <div className="pt-32 pb-14 sm:pt-40 sm:pb-20">
-          <Link
-            href="/cases"
-            className="group inline-flex items-center gap-2 text-sm text-white/45 transition-colors hover:text-white"
-          >
-            <span className="transition-transform group-hover:-translate-x-1">←</span>
-            Все кейсы
-          </Link>
+          <CaseBackButton />
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_380px]">
             {/* Main Content */}
