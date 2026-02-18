@@ -6,6 +6,7 @@ import { Process } from "@/components/sections/Process";
 import { Services } from "@/components/sections/Services";
 import { BundleOffersSection } from "@/components/sections/BundleOffersSection";
 import { BundleOffersSkeleton } from "@/components/skeletons/BundleOffersSkeleton";
+import { CasesSkeleton } from "@/components/skeletons/CasesSkeleton";
 
 const FAQ = dynamic(() => import("@/components/sections/FAQ").then((mod) => mod.FAQ));
 const Insights = dynamic(() => import("@/components/sections/Insights").then((mod) => mod.Insights));
@@ -22,7 +23,9 @@ export default function Home() {
       </Suspense>
       <Services />
       <Process />
-      <Cases />
+      <Suspense fallback={<CasesSkeleton />}>
+        <Cases />
+      </Suspense>
       {/* <About /> */}
       <FAQ />
       <Insights />
