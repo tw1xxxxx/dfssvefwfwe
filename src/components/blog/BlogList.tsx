@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 type SortOption = "date" | "views";
 
 export function BlogList({ initialPosts }: { initialPosts: Post[] }) {
-  const [sort, setSort] = useState<SortOption>("views");
+  const [sort, setSort] = useState<SortOption>("date");
 
   const sortedPosts = [...initialPosts].sort((a, b) => {
     if (sort === "date") {

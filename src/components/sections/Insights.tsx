@@ -5,6 +5,10 @@ import { InView } from "@/components/ui/InView";
 
 export async function Insights() {
   const posts = await getPosts();
+  const recentPosts = [...posts]
+    .filter((p) => p.published !== false)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <section className="border-t border-white/10">
@@ -34,7 +38,7 @@ export async function Insights() {
           </InView>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {posts.slice(0, 3).map((p, idx) => (
+            {recentPosts.map((p, idx) => (
               <InView key={p.slug} delayMs={idx * 60}>
                 <Link
                   href={`/blog/${p.slug}`}
