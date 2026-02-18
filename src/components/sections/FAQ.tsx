@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { InView } from "@/components/ui/InView";
 
@@ -78,7 +79,7 @@ export function FAQ() {
                     }`}>
                       {item.question}
                     </span>
-                    <div className={`ml-4 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                    <div className={`ml-4 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ease-in-out ${
                       openIndex === index 
                         ? "border-[color:var(--color-accent-2)]/30 bg-[color:var(--color-accent-2)]/10 text-[color:var(--color-accent-2)] rotate-180" 
                         : "border-white/10 text-white/40"
@@ -95,15 +96,21 @@ export function FAQ() {
                     </div>
                   </button>
                   
-                  <div 
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      openIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <div className="px-5 pb-5 text-sm leading-6 text-white/60 border-t border-white/5 pt-3">
-                      {item.answer}
-                    </div>
-                  </div>
+                  <AnimatePresence initial={false}>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5 text-sm leading-6 text-white/60 border-t border-white/5 pt-3">
+                          {item.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </InView>
             ))}
