@@ -6,6 +6,9 @@
     "images": [
       "/videos/mr-cleaner.mp4"
     ],
+    "videoSettings": {
+      "trimEnd": 3
+    },
     "includes": [
       "Анализ ниши и упаковка смыслов под вашу ЦА",
       "Продающая структура: от боли к покупке",
@@ -48,7 +51,7 @@
       "gradient-6"
     ],
     "videoSettings": {
-      "trimEnd": 4
+      "trimEnd": 3
     },
     "includes": [
       "Глубокое погружение в бизнес-процессы компании",
