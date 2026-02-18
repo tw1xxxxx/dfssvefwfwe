@@ -1,10 +1,11 @@
+import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { Cases } from "@/components/sections/Cases";
 import { Hero } from "@/components/sections/Hero";
 import { Process } from "@/components/sections/Process";
 import { Services } from "@/components/sections/Services";
-import { BundleOffers } from "@/components/sections/BundleOffers";
-import { getBundles } from "@/lib/bundles-db";
+import { BundleOffersSection } from "@/components/sections/BundleOffersSection";
+import { BundleOffersSkeleton } from "@/components/skeletons/BundleOffersSkeleton";
 
 const FAQ = dynamic(() => import("@/components/sections/FAQ").then((mod) => mod.FAQ));
 const Insights = dynamic(() => import("@/components/sections/Insights").then((mod) => mod.Insights));
@@ -12,13 +13,13 @@ const Contact = dynamic(() => import("@/components/sections/Contact").then((mod)
 
 export const revalidate = 60;
 
-export default async function Home() {
-  const bundles = await getBundles();
-
+export default function Home() {
   return (
     <main className="select-none">
       <Hero />
-      <BundleOffers bundles={bundles} />
+      <Suspense fallback={<BundleOffersSkeleton />}>
+        <BundleOffersSection />
+      </Suspense>
       <Services />
       <Process />
       <Cases />
