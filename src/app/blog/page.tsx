@@ -13,7 +13,7 @@ export default async function BlogPage() {
   return (
     <main className="min-h-screen">
       <Container>
-        <div className="pb-14 pt-28">
+        <div className="pt-32 pb-14">
           <div className="max-w-3xl">
             <div className="text-xs font-semibold tracking-wide text-white/55">
               TECH INSIGHTS
