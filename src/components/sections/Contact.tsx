@@ -31,7 +31,7 @@ export function Contact() {
           <div className="mt-16 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <InView delayMs={100}>
               <div className="group relative rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-1 backdrop-blur-sm transition-all hover:border-white/20">
-                <div className="rounded-[2.25rem] bg-[#070a12]/40 p-6 sm:p-10">
+                <div className="rounded-[2.25rem] bg-[#070a12]/40 p-4 sm:p-10">
                   <LeadForm />
                 </div>
               </div>
