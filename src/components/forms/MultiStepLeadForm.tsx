@@ -118,7 +118,7 @@ export function MultiStepLeadForm({
                 placeholder="Иван"
                 value={contactData.name}
                 onChange={(e) => setContactData(prev => ({ ...prev, name: e.target.value }))}
-                className="w-full rounded-2xl border border-white/5 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 transition-all"
+                className="w-full rounded-2xl border border-white/5 bg-white/5 px-5 py-4 text-base text-white placeholder:text-white/30 focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 transition-all"
               />
             </div>
             <div className="grid gap-2">
@@ -130,7 +130,7 @@ export function MultiStepLeadForm({
                 placeholder="+7 (999) 919-62-61"
                 value={contactData.phone}
                 onChange={handlePhoneChange}
-                className="w-full rounded-2xl border border-white/5 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 transition-all"
+                className="w-full rounded-2xl border border-white/5 bg-white/5 px-5 py-4 text-base text-white placeholder:text-white/30 focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 transition-all"
               />
             </div>
           </div>

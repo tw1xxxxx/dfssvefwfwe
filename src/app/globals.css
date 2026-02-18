@@ -40,6 +40,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   touch-action: manipulation;
+  overflow-x: hidden;
 }
 
 body {
@@ -50,6 +51,7 @@ body {
   cursor: default;
   overflow-x: hidden;
   width: 100%;
+  position: relative;
 }
 
 /* Prevent text cursor on hover while maintaining pointer for interactive elements */

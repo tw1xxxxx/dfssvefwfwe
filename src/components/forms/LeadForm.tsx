@@ -138,7 +138,7 @@ export function LeadForm({
   }
 
   const inputBase =
-    "w-full rounded-[1.25rem] border border-white/5 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-accent-2)] transition-all focus:bg-white/[0.08]";
+    "w-full rounded-[1.25rem] border border-white/5 bg-white/5 px-5 py-4 text-base text-white placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-accent-2)] transition-all focus:bg-white/[0.08]";
 
   return (
     <form
