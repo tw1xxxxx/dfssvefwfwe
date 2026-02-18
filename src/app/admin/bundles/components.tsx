@@ -56,10 +56,12 @@ export function ImageUpload({
   label,
   images,
   onChange,
+  multiple = true,
 }: {
   label: string;
   images: string[];
   onChange: (newImages: string[]) => void;
+  multiple?: boolean;
 }) {
   const [uploading, setUploading] = useState(false);
 
@@ -78,7 +80,11 @@ export function ImageUpload({
       });
       const data = await res.json();
       if (data.url) {
-        onChange([...images, data.url]);
+        if (multiple) {
+          onChange([...images, data.url]);
+        } else {
+          onChange([data.url]);
+        }
       }
     } catch (err) {
       console.error(err);
