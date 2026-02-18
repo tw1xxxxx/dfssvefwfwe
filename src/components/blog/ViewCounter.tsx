@@ -3,8 +3,14 @@
 import { useEffect, useState } from "react";
 
 export function ViewCounter({ slug, initialViews = 0 }: { slug: string; initialViews?: number }) {
-  const [views, setViews] = useState(initialViews);
+  const [views, setViews] = useState(initialViews || 0);
   const [hasViewed, setHasViewed] = useState(false);
+
+  useEffect(() => {
+    if (initialViews) {
+      setViews(initialViews);
+    }
+  }, [initialViews]);
 
   useEffect(() => {
     // Check if user has already viewed this post in this session
