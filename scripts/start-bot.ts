@@ -15,6 +15,7 @@ console.log('Bot is starting...');
 type BotState = 
   | 'IDLE' 
   | 'WIZARD_TITLE' 
+  | 'WIZARD_EXCERPT'
   | 'WIZARD_TAGS' 
   | 'WIZARD_CONTENT' 
   | 'WIZARD_REVIEW' 
@@ -60,8 +61,8 @@ const reviewKeyboard = {
     keyboard: [
       [{ text: '✅ Опубликовать' }],
       [{ text: '✏️ Изм. Заголовок' }, { text: '✏️ Изм. Текст' }],
-      [{ text: '✏️ Изм. Теги' }, { text: '👁️ Предпросмотр' }],
-      [{ text: '❌ Отмена' }]
+      [{ text: '✏️ Изм. Превью' }, { text: '✏️ Изм. Теги' }],
+      [{ text: '👁️ Предпросмотр' }, { text: '❌ Отмена' }]
     ],
     resize_keyboard: true
   }
@@ -112,6 +113,7 @@ async function showReview(chatId: number, session: Session) {
 
 <b>Заголовок:</b> ${draft.title}
 <b>Slug:</b> ${draft.slug}
+<b>Превью (Excerpt):</b> ${draft.excerpt || 'Не задано'}
 <b>Теги:</b> ${draft.tags?.join(', ') || 'Нет тегов'}
 
 <b>Мета-теги (Авто):</b>
@@ -203,6 +205,17 @@ bot.on('message', async (msg) => {
            session.state = 'WIZARD_REVIEW';
            showReview(chatId, session);
         } else {
+          session.state = 'WIZARD_EXCERPT';
+          bot.sendMessage(chatId, 'Введите краткое описание (превью) для новости:', cancelKeyboard);
+        }
+        break;
+
+      case 'WIZARD_EXCERPT':
+        session.draft.excerpt = text;
+        if (session.originalSlug) {
+           session.state = 'WIZARD_REVIEW';
+           showReview(chatId, session);
+        } else {
           session.state = 'WIZARD_TAGS';
           bot.sendMessage(chatId, 'Введите теги через запятую:', cancelKeyboard);
         }
@@ -225,7 +238,7 @@ bot.on('message', async (msg) => {
         
         // Auto-generate meta if not set
         if (!session.draft.metaTitle) session.draft.metaTitle = session.draft.title;
-        if (!session.draft.metaDescription) session.draft.metaDescription = text.slice(0, 150) + '...';
+        if (!session.draft.metaDescription) session.draft.metaDescription = session.draft.excerpt || text.slice(0, 150) + '...';
         if (!session.draft.metaKeywords) session.draft.metaKeywords = session.draft.tags;
         
   // Save draft
@@ -259,6 +272,9 @@ bot.on('message', async (msg) => {
         } else if (text === '✏️ Изм. Текст') {
           session.state = 'WIZARD_CONTENT';
           bot.sendMessage(chatId, 'Введите новый текст:', cancelKeyboard);
+        } else if (text === '✏️ Изм. Превью') {
+          session.state = 'WIZARD_EXCERPT';
+          bot.sendMessage(chatId, 'Введите новое краткое описание:', cancelKeyboard);
         } else if (text === '✏️ Изм. Теги') {
           session.state = 'WIZARD_TAGS';
           bot.sendMessage(chatId, 'Введите новые теги:', cancelKeyboard);
