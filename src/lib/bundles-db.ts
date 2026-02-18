@@ -23,6 +23,7 @@ export type Bundle = {
   };
   metaTitle?: string;
   metaDescription?: string;
+  metaImage?: string;
 };
 
 export async function getBundles(): Promise<Bundle[]> {
@@ -36,7 +37,13 @@ export async function getBundles(): Promise<Bundle[]> {
 }
 
 export async function saveBundles(bundles: Bundle[]): Promise<void> {
-  await fs.writeFile(DB_PATH, JSON.stringify(bundles, null, 2), 'utf-8');
+  try {
+    await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
+    await fs.writeFile(DB_PATH, JSON.stringify(bundles, null, 2), 'utf-8');
+  } catch (error) {
+    console.error('Failed to save bundles:', error);
+    throw new Error('Failed to save data. Note: File system is read-only on Vercel.');
+  }
 }
 
 export async function createBundle(bundle: Bundle): Promise<Bundle> {

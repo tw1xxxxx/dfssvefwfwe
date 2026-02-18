@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getPostBySlug, updatePost, deletePost } from '@/lib/posts-db';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }

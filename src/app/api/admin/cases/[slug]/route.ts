@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCaseBySlug, updateCase, deleteCase } from '@/lib/cases-db';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }
@@ -25,9 +27,10 @@ export async function PUT(
       return NextResponse.json({ error: 'Case not found' }, { status: 404 });
     }
     return NextResponse.json(updated);
-  } catch (error) {
+  } catch (error: any) {
+    console.error('Update error:', error);
     return NextResponse.json(
-      { error: 'Failed to update case' },
+      { error: error.message || 'Failed to update case' },
       { status: 500 }
     );
   }

@@ -18,9 +18,31 @@ export default function LazyVideo({
   poster,
   onLoad,
 }: LazyVideoProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+    
     const video = videoRef.current;
     if (!video) return;
 
@@ -41,10 +63,12 @@ export default function LazyVideo({
         // Autoplay failed, we can try again on interaction
       });
     }
-  }, [src]);
+  }, [src, shouldLoad]);
 
   // Retry playing if paused (e.g. after low power mode suspension)
   useEffect(() => {
+      if (!shouldLoad) return;
+
       const video = videoRef.current;
       if (!video) return;
 
@@ -69,7 +93,7 @@ export default function LazyVideo({
           document.removeEventListener("touchstart", handleTouch);
           document.removeEventListener("click", handleTouch);
       };
-  }, []);
+  }, [shouldLoad]);
 
   const handleTimeUpdate = () => {
     const video = videoRef.current;
@@ -98,25 +122,31 @@ export default function LazyVideo({
   };
 
   return (
-    <div className="relative h-full w-full bg-gray-900 transform-gpu will-change-transform" onClick={() => {
-        const video = videoRef.current;
-        if (video && video.paused) video.play().catch(() => {});
-    }}>
-        <video
-        ref={videoRef}
-        className={className}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        onTimeUpdate={handleTimeUpdate}
-        onError={handleError}
-        onLoadedMetadata={handleLoadedMetadata}
-        onCanPlay={handleCanPlay}
-        >
-            <source src={src} type="video/mp4" />
-        </video>
+    <div 
+        ref={containerRef}
+        className="relative h-full w-full bg-gray-900 transform-gpu will-change-transform" 
+        onClick={() => {
+            const video = videoRef.current;
+            if (video && video.paused) video.play().catch(() => {});
+        }}
+    >
+        {shouldLoad && (
+            <video
+            ref={videoRef}
+            className={className}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onTimeUpdate={handleTimeUpdate}
+            onError={handleError}
+            onLoadedMetadata={handleLoadedMetadata}
+            onCanPlay={handleCanPlay}
+            >
+                <source src={src} type="video/mp4" />
+            </video>
+        )}
     </div>
   );
 }

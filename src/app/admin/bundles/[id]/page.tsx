@@ -217,6 +217,17 @@ export default function EditBundlePage({ params }: { params: Promise<{ id: strin
             values={bundle.metaKeywords || []}
             onChange={(vals) => setBundle({ ...bundle, metaKeywords: vals })}
           />
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-white/80">Meta Image (OG Image)</label>
+            <ImageUpload
+              label=""
+              images={bundle.metaImage ? [bundle.metaImage] : []}
+              onChange={(urls) => setBundle({ ...bundle, metaImage: urls[0] || "" })}
+              multiple={false}
+            />
+            <p className="text-xs text-white/40">Если не указано, используется первое изображение из слайдера</p>
+          </div>
         </div>
 
         <div className="flex justify-end gap-4">

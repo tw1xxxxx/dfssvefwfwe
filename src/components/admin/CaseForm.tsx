@@ -69,6 +69,26 @@ export function CaseForm({ initialData, isNew = false }: { initialData?: CaseStu
     }
   };
 
+  const generateSlug = () => {
+    const translit = (str: string) => {
+      const ru: Record<string, string> = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 
+        'е': 'e', 'ё': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i', 
+        'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 
+        'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 
+        'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 
+        'ш': 'sh', 'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '', 
+        'э': 'e', 'ю': 'yu', 'я': 'ya'
+      };
+      
+      return str.toLowerCase().split('').map(char => ru[char] || char).join('')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+    };
+    
+    setData({ ...data, slug: translit(data.title) });
+  };
+
   return (
     <form onSubmit={handleSubmit} className="max-w-4xl space-y-8">
       <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
@@ -77,14 +97,24 @@ export function CaseForm({ initialData, isNew = false }: { initialData?: CaseStu
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="block text-sm font-medium text-white/80">Slug (URL)</label>
-            <input
-              required
-              type="text"
-              value={data.slug}
-              onChange={(e) => setData({ ...data, slug: e.target.value })}
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-white/30 focus:outline-none"
-              placeholder="my-case-study"
-            />
+            <div className="flex gap-2">
+              <input
+                required
+                type="text"
+                value={data.slug}
+                onChange={(e) => setData({ ...data, slug: e.target.value })}
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-white/30 focus:outline-none"
+                placeholder="my-case-study"
+              />
+              <button
+                type="button"
+                onClick={generateSlug}
+                className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm hover:bg-white/10"
+                title="Сгенерировать из названия"
+              >
+                🪄
+              </button>
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -140,21 +170,21 @@ export function CaseForm({ initialData, isNew = false }: { initialData?: CaseStu
           <div className="space-y-2">
             <label className="block text-sm font-medium text-white/80">Бюджет (от)</label>
             <input
-              required
               type="text"
               value={data.price}
               onChange={(e) => setData({ ...data, price: e.target.value })}
               className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-white/30 focus:outline-none"
+              placeholder="Необязательно"
             />
           </div>
           <div className="space-y-2">
             <label className="block text-sm font-medium text-white/80">Сроки</label>
             <input
-              required
               type="text"
               value={data.duration}
               onChange={(e) => setData({ ...data, duration: e.target.value })}
               className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-white/30 focus:outline-none"
+              placeholder="Необязательно"
             />
           </div>
         </div>
@@ -245,34 +275,46 @@ export function CaseForm({ initialData, isNew = false }: { initialData?: CaseStu
       </div>
 
       <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h2 className="text-xl font-semibold">SEO Мета-теги</h2>
+        <h2 className="text-xl font-semibold">SEO</h2>
+        
         <div className="space-y-2">
           <label className="block text-sm font-medium text-white/80">Meta Title</label>
           <input
             type="text"
             value={data.metaTitle || ""}
             onChange={(e) => setData({ ...data, metaTitle: e.target.value })}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-white/30 focus:outline-none"
-            placeholder="Заголовок для поисковиков"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder-white/20 focus:border-white/30 focus:outline-none"
           />
         </div>
+
         <div className="space-y-2">
           <label className="block text-sm font-medium text-white/80">Meta Description</label>
           <textarea
             value={data.metaDescription || ""}
             onChange={(e) => setData({ ...data, metaDescription: e.target.value })}
-            className="h-24 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-white/30 focus:outline-none"
-            placeholder="Описание для поисковиков"
+            className="w-full h-24 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder-white/20 focus:border-white/30 focus:outline-none resize-none"
           />
         </div>
+
         <ArrayField
           label="Meta Keywords"
           values={data.metaKeywords || []}
           onChange={(val) => setData({ ...data, metaKeywords: val })}
         />
+
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-white/80">Meta Image (OG Image)</label>
+          <ImageUpload
+            label=""
+            images={data.metaImage ? [data.metaImage] : []}
+            onChange={(urls) => setData({ ...data, metaImage: urls[0] || "" })}
+            multiple={false}
+          />
+          <p className="text-xs text-white/40">Если не указано, используется основное изображение</p>
+        </div>
       </div>
 
-      <div className="flex gap-4 pt-4">
+      <div className="flex justify-end gap-4">
         <button
           type="submit"
           disabled={loading}

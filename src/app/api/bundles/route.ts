@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getBundles, createBundle, type Bundle } from '@/lib/bundles-db';
 import { randomUUID } from 'crypto';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const bundles = await getBundles();
   return NextResponse.json(bundles);

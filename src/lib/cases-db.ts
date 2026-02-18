@@ -35,26 +35,30 @@ export type CaseStudy = {
   metaTitle?: string;
   metaDescription?: string;
   metaKeywords?: string[];
+  metaImage?: string;
 };
 
 export async function getCases(): Promise<CaseStudy[]> {
   try {
-    // Use direct import for reliability on Vercel
-    return casesData as CaseStudy[];
+    // Try to read from file system first to get latest updates (works locally)
+    const data = await fs.readFile(DB_PATH, 'utf-8');
+    return JSON.parse(data);
   } catch (error) {
-    console.error('Error reading cases import, fallback to fs:', error);
-    try {
-        const data = await fs.readFile(DB_PATH, 'utf-8');
-        return JSON.parse(data);
-    } catch (fsError) {
-        console.error('Error reading cases fs:', fsError);
-        return [];
-    }
+    // Fallback to static import (works on Vercel for initial data)
+    console.log('Reading from fs failed, falling back to static import');
+    return casesData as CaseStudy[];
   }
 }
 
 export async function saveCases(cases: CaseStudy[]): Promise<void> {
-  await fs.writeFile(DB_PATH, JSON.stringify(cases, null, 2), 'utf-8');
+  try {
+    // Ensure directory exists
+    await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
+    await fs.writeFile(DB_PATH, JSON.stringify(cases, null, 2), 'utf-8');
+  } catch (error) {
+    console.error('Failed to save cases:', error);
+    throw new Error('Failed to save data. Note: File system is read-only on Vercel.');
+  }
 }
 
 export async function getCaseBySlug(slug: string): Promise<CaseStudy | undefined> {

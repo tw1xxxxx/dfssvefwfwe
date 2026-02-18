@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCases, createCase } from '@/lib/cases-db';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const cases = await getCases();
   return NextResponse.json(cases);

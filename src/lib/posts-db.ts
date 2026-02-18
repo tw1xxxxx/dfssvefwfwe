@@ -20,6 +20,7 @@ export type Post = {
   metaTitle?: string;
   metaDescription?: string;
   metaKeywords?: string[];
+  metaImage?: string;
   published?: boolean;
   views?: number;
 };
@@ -40,7 +41,13 @@ export async function getPublishedPosts(): Promise<Post[]> {
 }
 
 export async function savePosts(posts: Post[]): Promise<void> {
-  await fs.writeFile(DB_PATH, JSON.stringify(posts, null, 2), 'utf-8');
+  try {
+    await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
+    await fs.writeFile(DB_PATH, JSON.stringify(posts, null, 2), 'utf-8');
+  } catch (error) {
+    console.error('Failed to save posts:', error);
+    throw new Error('Failed to save data. Note: File system is read-only on Vercel.');
+  }
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
