@@ -49,10 +49,6 @@ export async function savePosts(posts: Post[]): Promise<void> {
     // In Vercel/serverless environment, file system is read-only.
     // We swallow the error to allow the application to continue running
     // (e.g. returning updated data in response), even though data won't persist.
-    // Rethrow if needed, or handle gracefully
-    if (process.env.NODE_ENV === 'development') {
-        throw error;
-    }
   }
 }
 

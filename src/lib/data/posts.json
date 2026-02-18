@@ -36,7 +36,7 @@
       }
     ],
     "coverImage": "/uploads/Снимок экрана 2026-02-10 213033-1770749662518-197678134.png",
-    "views": 14591
+    "views": 6169
   },
   {
     "slug": "security-audit-checklist",
@@ -73,7 +73,7 @@
         "text": "Зависимости: обновления и уязвимости"
       }
     ],
-    "views": 7661
+    "views": 3136
   },
   {
     "slug": "case-tech-deep-dive",
@@ -106,7 +106,7 @@
         "text": "Сбор метрик и алерты на деградации"
       }
     ],
-    "views": 3943
+    "views": 10157
   },
   {
     "title": "Сайт на конструкторе? Почему это слив бюджета",
@@ -160,7 +160,7 @@
     ],
     "published": false,
     "date": "2026-02-15",
-    "views": 1385
+    "views": 2901
   },
   {
     "slug": "crm-dlya-logistiki-gardatrans",
@@ -234,7 +234,7 @@
       "кейс внедрения crm"
     ],
     "metaImage": "/uploads/logistics-crm-og.jpg",
-    "views": 9248
+    "views": 1388
   },
   {
     "slug": "telegram-bot-support-avtomatizaciya",
@@ -308,7 +308,7 @@
       "разработка бота"
     ],
     "metaImage": "/uploads/telegram-bot-og.jpg",
-    "views": 3311
+    "views": 9006
   },
   {
     "slug": "5-priznakov-pora-zakazyvat-crm",
@@ -393,7 +393,7 @@
       "excel или crm"
     ],
     "metaImage": "/uploads/excel-vs-crm-og.jpg",
-    "views": 12147
+    "views": 11316
   },
   {
     "slug": "mobile-app-vs-mobile-site",
@@ -491,7 +491,7 @@
       "конверсия приложения"
     ],
     "metaImage": "/uploads/mobile-compare-og.jpg",
-    "views": 13057
+    "views": 6555
   },
   {
     "slug": "chto-takoe-api-prostymi-slovami",
@@ -568,7 +568,7 @@
       "автоматизация бизнеса"
     ],
     "metaImage": "/uploads/api-guide-og.jpg",
-    "views": 13176
+    "views": 7138
   },
   {
     "slug": "bezopasnost-saita-kak-izbezhat-vzloma",
@@ -657,7 +657,7 @@
       "аудит безопасности"
     ],
     "metaImage": "/uploads/security-og.jpg",
-    "views": 9287
+    "views": 14589
   },
   {
     "slug": "razrabotka-marketpleisa-istorija",
@@ -730,7 +730,7 @@
       "маркетплейс под ключ"
     ],
     "metaImage": "/uploads/marketplace-og.jpg",
-    "views": 14565
+    "views": 14918
   },
   {
     "slug": "migraciya-s-bitriks-na-samopisnuyu-crm",
@@ -816,7 +816,7 @@
       "разработка crm под ключ"
     ],
     "metaImage": "/uploads/bitrix-migration-og.jpg",
-    "views": 13491
+    "views": 11076
   },
   {
     "slug": "skvoznaya-analitika-internet-magazin",
@@ -906,7 +906,7 @@
       "аналитика для ecommerce"
     ],
     "metaImage": "/uploads/analytics-og.jpg",
-    "views": 4020
+    "views": 3030
   },
   {
     "slug": "avtomatizaciya-sklada-ostatkov",
@@ -992,7 +992,7 @@
       "терминалы сбора данных"
     ],
     "metaImage": "/uploads/warehouse-og.jpg",
-    "views": 6315
+    "views": 8752
   },
   {
     "slug": "effekt-tildy-pochemu-konstruktory-vredny",
