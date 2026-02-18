@@ -38,7 +38,7 @@ export function LeadForm({
     { label: "Крупный", value: "от 1 000 000 ₽", min: 1000000, max: 10000000 },
   ], []);
 
-  const [budgetIndex, setBudgetIndex] = useState(0);
+  const [budgetIndex, setBudgetIndex] = useState(-1);
 
   const handleBudgetChange = (idx: number) => {
     setBudgetIndex(idx);
@@ -205,7 +205,7 @@ export function LeadForm({
           Бюджет
         </label>
         
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 mb-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {budgetOptions.map((opt, idx) => (
             <button
               key={opt.label}
@@ -227,45 +227,6 @@ export function LeadForm({
             </button>
           ))}
         </div>
-
-        <div className="relative h-12 px-2 mb-2">
-          {/* Custom Range Slider */}
-          <input
-            type="range"
-            min={0}
-            max={budgetOptions.length - 1}
-            step={1}
-            value={budgetIndex}
-            onChange={(e) => handleBudgetChange(Number(e.target.value))}
-            className="w-full absolute top-1/2 -translate-y-1/2 z-20 opacity-0 cursor-pointer h-full"
-          />
-          
-          {/* Visual Track */}
-          <div className="absolute top-1/2 left-0 w-full h-1.5 bg-white/10 rounded-full -translate-y-1/2 overflow-hidden pointer-events-none">
-            <div 
-              className="h-full bg-[color:var(--color-accent-2)]"
-              style={{ width: `${(budgetIndex / (budgetOptions.length - 1)) * 100}%` }}
-            />
-          </div>
-          
-          {/* Visual Thumb */}
-          <div 
-            className="absolute top-1/2 h-6 w-6 bg-[color:var(--color-accent-2)] rounded-full shadow-[0_0_15px_rgba(45,212,191,0.5)] border-2 border-[#030712] pointer-events-none z-10"
-            style={{ 
-              left: `${(budgetIndex / (budgetOptions.length - 1)) * 100}%`,
-              transform: `translate(-50%, -50%)`
-            }}
-          />
-        </div>
-
-        <input
-          id={`${formId}-budget`}
-          name="budget"
-          value={budget}
-          onChange={(e) => setBudget(e.target.value)}
-          className={inputBase}
-          placeholder="Например, 100 000 ₽"
-        />
       </div>
 
       <div className="sm:col-span-2 mt-2">
