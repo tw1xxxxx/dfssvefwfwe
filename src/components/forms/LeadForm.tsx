@@ -178,6 +178,8 @@ export function LeadForm({
         <input
           id={`${formId}-contact`}
           name="contact"
+          type="tel"
+          inputMode="tel"
           required
           value={contact}
           onChange={handleContactChange}
@@ -214,8 +216,8 @@ export function LeadForm({
               className={cn(
                 "flex flex-col items-center justify-center rounded-xl border p-2 text-center transition-all",
                 budgetIndex === idx
-                  ? "border-[color:var(--color-accent-2)] bg-[color:var(--color-accent-2)]/10 text-[color:var(--color-accent-2)]"
-                  : "border-white/5 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                  ? "border-[color:var(--color-accent-2)] bg-[color:var(--color-accent-2)] text-black"
+          : "border-white/5 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
               )}
             >
               <div className="text-[10px] font-bold uppercase tracking-wider opacity-70 mb-0.5">
