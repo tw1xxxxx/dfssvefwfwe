@@ -6,6 +6,7 @@ import { getPostBySlug } from "@/lib/posts-db";
 import { Metadata } from "next";
 
 import { ViewCounter } from "@/components/blog/ViewCounter";
+import { BlogCTA } from "@/components/blog/BlogCTA";
 
 export const dynamic = "force-dynamic";
 
@@ -81,6 +82,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 ),
               )}
             </div>
+
+            <BlogCTA />
           </div>
         </div>
       </Container>
