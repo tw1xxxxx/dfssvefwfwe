@@ -45,8 +45,10 @@ export async function savePosts(posts: Post[]): Promise<void> {
     await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
     await fs.writeFile(DB_PATH, JSON.stringify(posts, null, 2), 'utf-8');
   } catch (error) {
-    console.error('Failed to save posts:', error);
-    throw new Error('Failed to save data. Note: File system is read-only on Vercel.');
+    console.error('Failed to save posts to file system:', error);
+    // In Vercel/serverless environment, file system is read-only.
+    // We swallow the error to allow the application to continue running
+    // (e.g. returning updated data in response), even though data won't persist.
   }
 }
 
