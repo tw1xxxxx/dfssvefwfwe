@@ -137,7 +137,7 @@ export default async function CasePage({
                 <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
                   <div className="space-y-6">
                     <div>
-                      <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Цена проекта</div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Стоимость проекта</div>
                       <div className="mt-2 text-2xl font-semibold text-white">{item.price}</div>
                     </div>
                     
