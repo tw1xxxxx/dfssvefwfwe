@@ -48,7 +48,7 @@ export default async function CasePage({
   return (
     <main className="min-h-screen">
       <Container>
-        <div className="py-14 sm:py-20">
+        <div className="pt-32 pb-14 sm:pt-40 sm:pb-20">
           <Link
             href="/#cases"
             className="group inline-flex items-center gap-2 text-sm text-white/45 transition-colors hover:text-white"
@@ -120,17 +120,13 @@ export default async function CasePage({
               {/* Results Grid */}
               <section className="space-y-6">
                 <h2 className="text-lg font-semibold text-white">Результаты работы</h2>
-                <div className="grid gap-4 sm:grid-cols-3">
-                  {item.result.map((r, idx) => {
-                    const [val, ...descParts] = r.split(' ');
-                    const desc = descParts.join(' ');
-                    return (
-                      <div key={idx} className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center transition-colors hover:bg-white/10">
-                        <div className="text-2xl font-bold text-[color:var(--color-accent)]">{val}</div>
-                        <div className="mt-2 text-xs font-medium text-white/40 uppercase tracking-wider">{desc}</div>
-                      </div>
-                    );
-                  })}
+                <div className="grid gap-4 grid-cols-2 sm:grid-cols-3">
+                  {item.result.map((r, idx) => (
+                    <div key={idx} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center transition-colors hover:bg-white/10">
+                      <div className="text-xl font-bold text-[color:var(--color-accent)]">{r.value}</div>
+                      <div className="mt-1 text-[10px] font-medium text-white/40 uppercase tracking-wider leading-tight">{r.description}</div>
+                    </div>
+                  ))}
                 </div>
               </section>
             </div>

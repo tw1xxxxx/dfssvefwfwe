@@ -54,12 +54,12 @@ export function CaseCard({ caseStudy }: { caseStudy: CaseStudy }) {
             Результат
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
-            {caseStudy.result.slice(0, 3).map((r) => (
+            {caseStudy.result.slice(0, 3).map((r, idx) => (
               <span
-                key={r}
+                key={idx}
                 className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5 text-xs font-medium text-emerald-400/90"
               >
-                {r}
+                <span className="font-bold">{r.value}</span> {r.description}
               </span>
             ))}
           </div>

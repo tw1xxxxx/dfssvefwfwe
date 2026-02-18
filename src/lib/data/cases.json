@@ -8,9 +8,9 @@
     "challenge": "Обновить устаревший сайт, реализовать трекинг грузов в реальном времени и личный кабинет для B2B клиентов.",
     "solution": "Разработали современный портал на Next.js с интеграцией API трекинга судов и авиарейсов. Создали кабинет с документооборотом.",
     "result": [
-      "+60% новых заявок",
-      "Снижение нагрузки на колл-центр",
-      "Трекинг 24/7"
+      { "value": "+60%", "description": "новых заявок" },
+      { "value": "2x", "description": "Снижение нагрузки на колл-центр" },
+      { "value": "24/7", "description": "Трекинг грузов в реальном времени" }
     ],
     "tech": [
       "Next.js",
@@ -39,9 +39,9 @@
     "challenge": "Создать дашборд для визуализации больших данных из разных источников (Google Ads, FB, CRM) в едином окне.",
     "solution": "SPA приложение с сложными графиками (D3.js), быстрой обработкой данных на бэкенде и системой отчетов.",
     "result": [
-      "Обработка 1M+ событий/сек",
-      "Удобные дашборды",
-      "Экспорт отчетов"
+      { "value": "1M+", "description": "Обработка событий/сек" },
+      { "value": "ROI", "description": "Прозрачная аналитика для клиентов" },
+      { "value": "PDF/XLS", "description": "Экспорт отчетов в один клик" }
     ],
     "tech": [
       "Vue.js",
@@ -70,9 +70,9 @@
     "challenge": "Запустить платформу для онлайн-курсов с видео-уроками, тестами и сертификацией студентов.",
     "solution": "Платформа с видео-стримингом, интерактивными тестами и геймификацией процесса обучения.",
     "result": [
-      "10k+ студентов",
-      "Высокий retention",
-      "Стабильный стриминг"
+      { "value": "10k+", "description": "Активных студентов" },
+      { "value": "85%", "description": "Retention rate (удержание)" },
+      { "value": "99.9%", "description": "Uptime платформы" }
     ],
     "tech": [
       "React",
@@ -98,528 +98,29 @@
     "industry": "Real Estate",
     "serviceType": "web",
     "title": "Агрегатор недвижимости",
-    "challenge": "Создать удобный поиск жилья с картой, фильтрами и ипотечным калькулятором.",
-    "solution": "Быстрый поиск на ElasticSearch, интерактивная карта Mapbox, интеграция с банками для расчета ипотеки.",
+    "challenge": "Разработать удобный поиск недвижимости с фильтрами, картой и ипотечным калькулятором.",
+    "solution": "Интерактивная карта, быстрый поиск с ElasticSearch и интеграция с банками для расчета ипотеки.",
     "result": [
-      "Поиск < 0.5 сек",
-      "Удобная карта",
-      "Интеграция с банками"
+      { "value": "50k+", "description": "Объявлений в базе" },
+      { "value": "<1s", "description": "Время поиска объектов" },
+      { "value": "15%", "description": "Рост конверсии в звонок" }
     ],
     "tech": [
       "Next.js",
-      "ElasticSearch",
-      "Mapbox",
-      "NestJS"
-    ],
-    "price": "2 500 000 ₽",
-    "duration": "7 месяцев",
-    "tags": [
-      "Marketplace",
-      "Real Estate",
-      "Map"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Сервис стал одним из лидеров рынка в своем регионе за полгода."
-  },
-  {
-    "slug": "med-consult-portal",
-    "client": "DocOnline",
-    "industry": "Healthcare",
-    "serviceType": "web",
-    "title": "Портал телемедицины",
-    "challenge": "Обеспечить возможность записи к врачу и проведения безопасных видео-консультаций.",
-    "solution": "Защищенный портал (HIPAA compliant) с видеосвязью, чатом и электронной медкартой.",
-    "result": [
-      "Безопасная связь",
-      "Удобная запись",
-      "Электронные рецепты"
-    ],
-    "tech": [
-      "Angular",
-      "Node.js",
-      "Socket.io",
-      "WebRTC"
-    ],
-    "price": "3 000 000 ₽",
-    "duration": "8 месяцев",
-    "tags": [
-      "MedTech",
-      "Security",
-      "Video"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Врачи могут проводить приемы удаленно, что особенно важно в период пандемий."
-  },
-  {
-    "slug": "fintech-invest-app",
-    "client": "InvestPro",
-    "industry": "Fintech",
-    "serviceType": "mobile",
-    "title": "Приложение для инвестиций",
-    "challenge": "Разработать мобильное приложение для торговли акциями с простым интерфейсом для новичков.",
-    "solution": "Нативное приложение (Swift/Kotlin) с графиками в реальном времени, пуш-уведомлениями и биометрией.",
-    "result": [
-      "App Store Top 10",
-      "Высокая безопасность",
-      "Real-time котировки"
-    ],
-    "tech": [
-      "Swift",
-      "Kotlin",
-      "WebSocket",
-      "Go"
-    ],
-    "price": "2 800 000 ₽",
-    "duration": "6 месяцев",
-    "tags": [
-      "Fintech",
-      "Mobile",
-      "Investment"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Интеграция с биржевым шлюзом обеспечивает мгновенное исполнение ордеров."
-  },
-  {
-    "slug": "food-delivery-app",
-    "client": "YummyExpress",
-    "industry": "FoodTech",
-    "serviceType": "mobile",
-    "title": "Приложение доставки еды",
-    "challenge": "Конкурентное приложение доставки с отслеживанием курьера на карте и программой лояльности.",
-    "solution": "Flutter приложение для iOS и Android. Приложение для курьеров и админ-панель для ресторанов.",
-    "result": [
-      "Рост заказов +300%",
-      "Оптимизация логистики",
-      "Удобный UX"
-    ],
-    "tech": [
-      "Flutter",
-      "Firebase",
-      "Google Maps",
-      "Node.js"
-    ],
-    "price": "1 900 000 ₽",
-    "duration": "5 месяцев",
-    "tags": [
-      "Delivery",
-      "Mobile",
-      "Geolocation"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Алгоритм распределения заказов сократил время ожидания на 20%."
-  },
-  {
-    "slug": "fitness-tracker-app",
-    "client": "FitLife",
-    "industry": "Health & Fitness",
-    "serviceType": "mobile",
-    "title": "Фитнес-трекер и план питания",
-    "challenge": "Помочь пользователям следить за тренировками и калориями.",
-    "solution": "Приложение с базой упражнений, сканером штрих-кодов продуктов и интеграцией с Apple Health/Google Fit.",
-    "result": [
-      "Высокий retention",
-      "Интеграция с носимыми",
-      "Геймификация"
-    ],
-    "tech": [
-      "React Native",
-      "GraphQL",
-      "Node.js",
-      "MongoDB"
-    ],
-    "price": "1 400 000 ₽",
-    "duration": "4 месяца",
-    "tags": [
-      "Fitness",
-      "Mobile",
-      "Health"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Пользователи могут соревноваться с друзьями, что повышает мотивацию."
-  },
-  {
-    "slug": "niche-social-network",
-    "client": "ArtCommunity",
-    "industry": "Social",
-    "serviceType": "mobile",
-    "title": "Соцсеть для художников",
-    "challenge": "Создать пространство для портфолио и общения творческих людей без алгоритмической ленты.",
-    "solution": "Приложение с фокусом на визуальный контент, хронологической лентой и возможностью продажи работ.",
-    "result": [
-      "Органический рост",
-      "Активное комьюнити",
-      "Монетизация авторов"
-    ],
-    "tech": [
-      "Swift",
-      "Kotlin",
-      "AWS S3",
-      "Redis"
-    ],
-    "price": "2 200 000 ₽",
-    "duration": "6 месяцев",
-    "tags": [
-      "Social",
-      "Mobile",
-      "Community"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Уникальный алгоритм рекомендаций, основанный на стилевых предпочтениях, а не на хайпе."
-  },
-  {
-    "slug": "travel-guide-offline",
-    "client": "GoTravel",
-    "industry": "Travel",
-    "serviceType": "mobile",
-    "title": "Оффлайн путеводитель",
-    "challenge": "Приложение для путешественников, работающее без интернета.",
-    "solution": "Загрузка карт и гидов в кэш, GPS навигация оффлайн, AR-режим для достопримечательностей.",
-    "result": [
-      "Работает в глуши",
-      "Экономия трафика",
-      "AR навигация"
-    ],
-    "tech": [
-      "Flutter",
-      "Mapbox Offline",
-      "SQLite",
-      "ARKit"
-    ],
-    "price": "1 600 000 ₽",
-    "duration": "5 месяцев",
-    "tags": [
-      "Travel",
-      "Mobile",
-      "Offline"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Путешественники могут строить маршруты даже в роуминге без доступа к сети."
-  },
-  {
-    "slug": "real-estate-crm",
-    "client": "EliteEstate",
-    "industry": "Real Estate",
-    "serviceType": "crm",
-    "title": "CRM для агентства недвижимости",
-    "challenge": "Систематизировать базу объектов и клиентов, автоматизировать подбор вариантов.",
-    "solution": "Кастомная CRM с воронкой продаж, интеграцией с сайтом и автоматической генерацией презентаций объектов.",
-    "result": [
-      "Рост продаж +25%",
-      "Быстрый подбор",
-      "Контроль агентов"
-    ],
-    "tech": [
-      "Laravel",
-      "Vue.js",
-      "MySQL",
-      "Redis"
-    ],
-    "price": "1 100 000 ₽",
-    "duration": "4 месяца",
-    "tags": [
-      "CRM",
-      "Real Estate",
-      "Automation"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Автоматическая выгрузка объявлений на Avito и Cian прямо из CRM."
-  },
-  {
-    "slug": "hr-portal-crm",
-    "client": "TechRecruit",
-    "industry": "HR",
-    "serviceType": "crm",
-    "title": "HRM система рекрутинга",
-    "challenge": "Упорядочить базу кандидатов и процесс собеседований.",
-    "solution": "Система с парсингом резюме, канбан-доской этапов, интеграцией с календарями и почтой.",
-    "result": [
-      "Быстрый найм",
-      "Единая база",
-      "Аналитика воронок"
-    ],
-    "tech": [
-      "React",
-      "Node.js",
-      "PostgreSQL",
+      "NestJS",
+      "MongoDB",
       "ElasticSearch"
     ],
-    "price": "1 350 000 ₽",
-    "duration": "5 месяцев",
-    "tags": [
-      "CRM",
-      "HR",
-      "Recruitment"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Умный поиск по базе кандидатов позволяет находить таланты за секунды."
-  },
-  {
-    "slug": "supply-chain-crm",
-    "client": "FactoryPro",
-    "industry": "Manufacturing",
-    "serviceType": "crm",
-    "title": "SRM управление поставщиками",
-    "challenge": "Оптимизировать закупки и контроль качества поставок сырья.",
-    "solution": "Портал для поставщиков, тендерная площадка и система оценки качества (SRM).",
-    "result": [
-      "Снижение затрат -15%",
-      "Прозрачность закупок",
-      "Контроль сроков"
-    ],
-    "tech": [
-      "Java Spring",
-      "Angular",
-      "Oracle",
-      "Docker"
-    ],
-    "price": "2 400 000 ₽",
-    "duration": "7 месяцев",
-    "tags": [
-      "CRM",
-      "B2B",
-      "Supply Chain"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Автоматический расчет рейтинга поставщиков на основе сроков и качества поставок."
-  },
-  {
-    "slug": "support-desk-crm",
-    "client": "TelecomNet",
-    "industry": "Telecom",
-    "serviceType": "crm",
-    "title": "Service Desk для провайдера",
-    "challenge": "Обработка тысяч заявок от абонентов, контроль SLA.",
-    "solution": "Тикет-система с омниканальностью (телефон, чат, почта), база знаний и автоматическая маршрутизация заявок.",
-    "result": [
-      "Соблюдение SLA 99%",
-      "Довольные клиенты",
-      "Эффективность +40%"
-    ],
-    "tech": [
-      "Python Django",
-      "React",
-      "Celery",
-      "PostgreSQL"
-    ],
-    "price": "1 600 000 ₽",
-    "duration": "5 месяцев",
-    "tags": [
-      "CRM",
-      "Support",
-      "Telecom"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Интеграция с биллингом позволяет оператору видеть статус баланса и оборудования абонента сразу."
-  },
-  {
-    "slug": "clinic-crm-system",
-    "client": "MediCare",
-    "industry": "Healthcare",
-    "serviceType": "crm",
-    "title": "МИС для сети клиник",
-    "challenge": "Единая база пациентов, расписание врачей, учет услуг и финансов.",
-    "solution": "Комплексная медицинская система: регистратура, АРМ врача, склад медикаментов, касса.",
-    "result": [
-      "Нет очередей",
-      "Точный учет",
-      "Рост выручки"
-    ],
-    "tech": [
-      ".NET Core",
-      "React",
-      "MSSQL",
-      "SignalR"
-    ],
-    "price": "3 200 000 ₽",
-    "duration": "9 месяцев",
-    "tags": [
-      "CRM",
-      "Healthcare",
-      "ERP"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Модуль аналитики помогает руководству видеть загрузку отделений и эффективность врачей."
-  },
-  {
-    "slug": "insurance-doc-automation",
-    "client": "SafeInvest",
-    "industry": "Insurance",
-    "serviceType": "automation",
-    "title": "Автоматизация документооборота",
-    "challenge": "Ускорить процесс согласования и выдачи страховых полисов, исключить ручной ввод данных.",
-    "solution": "Система автоматической генерации документов на основе шаблонов, OCR распознавание паспортов, маршруты согласования и ЭЦП.",
-    "result": [
-      "Выдача полиса за 5 мин",
-      "0 ошибок ручного ввода",
-      "Экономия бумаги"
-    ],
-    "tech": [
-      "Python",
-      "OCR",
-      "RabbitMQ",
-      "Camunda"
-    ],
-    "price": "1 700 000 ₽",
-    "duration": "5 месяцев",
-    "tags": [
-      "Automation",
-      "Fintech",
-      "Workflow"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Внедрение системы сократило операционные расходы бэк-офиса на 40%."
-  },
-  {
-    "slug": "warehouse-sync-automation",
-    "client": "RetailGroup",
-    "industry": "Retail",
-    "serviceType": "automation",
-    "title": "Синхронизация складов и маркетплейсов",
-    "challenge": "Исключить овербукинг товаров при торговле на Ozon, WB и своем сайте.",
-    "solution": "Интеграционная шина, которая обновляет остатки на всех площадках в реальном времени при каждой продаже.",
-    "result": [
-      "Нет отмен заказов",
-      "Актуальные остатки",
-      "Рост рейтинга магазина"
-    ],
-    "tech": [
-      "Go",
-      "Kafka",
-      "Redis",
-      "PostgreSQL"
-    ],
-    "price": "900 000 ₽",
+    "price": "1 200 000 ₽",
     "duration": "3 месяца",
     "tags": [
-      "Automation",
-      "E-commerce",
-      "Integration"
+      "Real Estate",
+      "Marketplace",
+      "Maps"
     ],
     "imageUrl": "",
     "gallery": [],
     "videoUrl": "",
-    "fullDescription": "Система обрабатывает более 50 000 обновлений стоков в час в пиковые нагрузки."
-  },
-  {
-    "slug": "marketing-automation-chains",
-    "client": "BeautyShop",
-    "industry": "E-commerce",
-    "serviceType": "automation",
-    "title": "Автоматизация маркетинга (CDP)",
-    "challenge": "Повысить LTV клиентов за счет персонализированных коммуникаций.",
-    "solution": "Сбор данных о поведении, сегментация и запуск триггерных цепочек (Email, SMS, Push) - брошенная корзина, реактивация и т.д.",
-    "result": [
-      "Рост LTV +20%",
-      "Высокий Open Rate",
-      "Автопродажи"
-    ],
-    "tech": [
-      "Node.js",
-      "ClickHouse",
-      "SendGrid",
-      "Twilio"
-    ],
-    "price": "1 200 000 ₽",
-    "duration": "4 месяца",
-    "tags": [
-      "Automation",
-      "Marketing",
-      "CDP"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Внедрили RFM анализ для автоматического присвоения статусов лояльности."
-  },
-  {
-    "slug": "telegram-bot-metrics",
-    "client": "CafeNetwork",
-    "industry": "Food & Beverage",
-    "serviceType": "automation",
-    "title": "Бот отчетности для владельцев",
-    "challenge": "Владельцы хотят видеть выручку и ключевые показатели бизнеса в телефоне в любой момент.",
-    "solution": "Telegram бот, интегрированный с iiko/R-Keeper. Присылает утренние сводки и позволяет запросить отчет по команде.",
-    "result": [
-      "Контроль 24/7",
-      "Быстрые решения",
-      "Простота доступа"
-    ],
-    "tech": [
-      "Python",
-      "Aiogram",
-      "SQL",
-      "API"
-    ],
-    "price": "Скрыто по просьбе клиента",
-    "duration": "1.5 месяца",
-    "tags": [
-      "Automation",
-      "Bot",
-      "Analytics"
-    ],
-    "imageUrl": "/uploads/233868_O-1771185829397-458190670.jpg",
-    "gallery": [
-      "/uploads/450x600-1771185834648-315441066.webp",
-      "/uploads/5231019370502688679-1771185838777-882013532.png"
-    ],
-    "videoUrl": "",
-    "fullDescription": "Бот также оповещает о подозрительных операциях (отмены чеков, большие скидки) в реальном времени.",
-    "metaKeywords": []
-  },
-  {
-    "slug": "saas-billing-automation",
-    "client": "CloudService",
-    "industry": "IT",
-    "serviceType": "automation",
-    "title": "Биллинг и автоматизация счетов",
-    "challenge": "Автоматизировать выставление счетов и актов для тысяч B2B клиентов SaaS сервиса по подписке.",
-    "solution": "Биллинговый модуль, который собирает статистику использования, формирует счета, отправляет их по ЭДО (Diadoc) и блокирует доступ должникам.",
-    "result": [
-      "Своевременные оплаты",
-      "Автоматический документооборот",
-      "Ноль ручной работы"
-    ],
-    "tech": [
-      "Node.js",
-      "PostgreSQL",
-      "Diadoc API"
-    ],
-    "price": "1 300 000 ₽",
-    "duration": "4 месяца",
-    "tags": [
-      "Billing",
-      "Fintech",
-      "Automation"
-    ],
-    "imageUrl": "",
-    "gallery": [],
-    "videoUrl": "",
-    "fullDescription": "Интеграция с банковским API позволяет автоматически разносить входящие платежи."
+    "fullDescription": "Удобный личный кабинет для риелторов и автоматическая выгрузка на доски объявлений."
   }
 ]

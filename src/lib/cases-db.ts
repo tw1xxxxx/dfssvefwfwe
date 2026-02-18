@@ -10,6 +10,11 @@ import casesData from './data/cases.json';
 
 const DB_PATH = path.join(process.cwd(), 'src/lib/data/cases.json');
 
+export type CaseResult = {
+  value: string;
+  description: string;
+};
+
 export type CaseStudy = {
   slug: string;
   client: string;
@@ -18,7 +23,7 @@ export type CaseStudy = {
   title: string;
   challenge: string;
   solution: string;
-  result: string[];
+  result: CaseResult[];
   tech: string[];
   price: string;
   duration: string;

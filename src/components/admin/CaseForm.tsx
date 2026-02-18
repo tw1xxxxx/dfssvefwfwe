@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CaseStudy } from "@/lib/cases-db";
-import { ArrayField, ImageUpload } from "./FormComponents";
+import { ArrayField, ImageUpload, ResultArrayField } from "./FormComponents";
 
 export function CaseForm({ initialData, isNew = false }: { initialData?: CaseStudy, isNew?: boolean }) {
   const router = useRouter();
@@ -198,7 +198,7 @@ export function CaseForm({ initialData, isNew = false }: { initialData?: CaseStu
 
       <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
         <h2 className="text-xl font-semibold">Списки и Теги</h2>
-        <ArrayField
+        <ResultArrayField
           label="Результаты (Results)"
           values={data.result}
           onChange={(val) => setData({ ...data, result: val })}
