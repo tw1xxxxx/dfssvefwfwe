@@ -23,14 +23,6 @@ export function Footer() {
             <Link className="hover:text-white" href="/#contact">
               Контакты
             </Link>
-            <Link 
-              className="hover:text-white" 
-              href="/docs/alpha-dev-contract-example.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Образец договора
-            </Link>
           </div>
 
           <div className="text-xs text-white/45">

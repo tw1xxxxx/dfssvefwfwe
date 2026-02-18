@@ -61,7 +61,7 @@ export function Process() {
           "Договор, гарантирующий качество и сроки. Работаем в белую и несем полную ответственность.",
         link: {
           label: "Пример договора",
-          href: "/docs/sample-contract.pdf",
+          href: "/docs/alpha-dev-contract-example.pdf",
         }
       },
       {
