@@ -114,11 +114,11 @@ export default async function CasePage({
               {/* Results Grid */}
               <section className="space-y-6">
                 <h2 className="text-lg font-semibold text-white">Результаты работы</h2>
-                <div className="grid gap-4 grid-cols-2 sm:grid-cols-3">
+                <div className="grid gap-3 grid-cols-2 sm:grid-cols-3">
                   {item.result.map((r, idx) => (
-                    <div key={idx} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center transition-colors hover:bg-white/10">
-                      <div className="text-xl font-bold text-[color:var(--color-accent)]">{r.value}</div>
-                      <div className="mt-1 text-[10px] font-medium text-white/40 uppercase tracking-wider leading-tight">{r.description}</div>
+                    <div key={idx} className="rounded-xl border border-white/10 bg-white/5 p-3 text-center transition-colors hover:bg-white/10">
+                      <div className="text-lg font-bold text-[color:var(--color-accent)] sm:text-xl">{r.value}</div>
+                      <div className="mt-0.5 text-[9px] font-medium text-white/40 uppercase tracking-wider leading-tight sm:text-[10px]">{r.description}</div>
                     </div>
                   ))}
                 </div>

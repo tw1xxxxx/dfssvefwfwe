@@ -60,7 +60,7 @@ export function Hero() {
                 Ваш успех
               </span>
               <br />
-              <span className="relative inline-block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
+              <span className="relative inline-block mt-1 sm:mt-2 text-white/80">
                 — наша работа
               </span>
             </h1>
