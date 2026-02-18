@@ -47,7 +47,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             Все статьи
           </Link>
 
-          <div className="mx-auto mt-8 max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-10 lg:p-14">
+          <div className="mx-auto mt-8 max-w-6xl rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-10 lg:p-14">
             <div className="flex items-center justify-between gap-4">
               <div className="text-sm text-white/50">{post.date}</div>
               <ViewCounter slug={slug} initialViews={post.views} />
@@ -66,15 +66,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               ))}
             </div>
 
-            <div className="mt-12 space-y-6 text-base leading-8 text-white/80 sm:text-lg sm:leading-9">
+            <div className="mt-12 space-y-8 text-base leading-8 text-white/80 sm:text-lg sm:leading-9 lg:text-xl lg:leading-10">
               {post.content.map((b, idx) =>
                 b.type === "h2" ? (
-                  <h2 key={idx} className="pt-6 text-2xl font-bold sm:text-3xl">
+                  <h2 key={idx} className="pt-8 text-2xl font-bold sm:text-3xl lg:text-4xl">
                     {b.text}
                   </h2>
                 ) : b.type === "li" ? (
                   <div key={idx} className="flex gap-4">
-                    <span className="mt-3 h-2 w-2 flex-none rounded-full bg-white/40" />
+                    <span className="mt-3.5 h-2 w-2 flex-none rounded-full bg-white/40" />
                     <div>{b.text}</div>
                   </div>
                 ) : (
